@@ -1,4 +1,4 @@
-body {
+﻿body {
   width: 100%;
 }
 body:before,
@@ -1371,4 +1371,6 @@ pre .javascript .function {
 .tagcloud a {
   margin-right: 5px;
   display: inline-block;
+}body {
+cursor: url(images/cursor_default.bmp), auto;
 }
