@@ -155,6 +155,68 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-web-一" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/02/web-一/">web(一)</a>
+    </h1>
+  
+
+        
+        <a href="/2018/07/02/web-一/" class="archive-article-date">
+  	<time datetime="2018-07-02T01:06:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/07/02/web-一/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-两道入门Bin题(1)" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -175,16 +237,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Hello-World"><a href="#Hello-World" class="headerlink" title="Hello World!"></a>Hello World!</h1><hr>
-<p>目标：使用Ollydbg将弹框中的字符串修改</p>
-<h2 id="查找到main函数"><a href="#查找到main函数" class="headerlink" title="查找到main函数"></a>查找到main函数</h2><p>使用字符串检索法或者层层推进法能很快定位到目标</p>
-<p>如图：<br><img src="http://ww1.sinaimg.cn/large/005Z7H2Agy1fsuncb6v4cj30qw04rt9n.jpg" alt=""></p>
-<h2 id="对字符串直接进行修改"><a href="#对字符串直接进行修改" class="headerlink" title="对字符串直接进行修改"></a>对字符串直接进行修改</h2><p>找到字符串所对应的地址，在内存区中ctrl+G查找即可<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">004092A0</span><br></pre></td></tr></table></figure></p>
-<p>修改<br><img src="http://ww4.sinaimg.cn/large/005Z7H2Agy1fsuncpjbpbj30x80lq10p.jpg" alt=""></p>
-<h2 id="保存"><a href="#保存" class="headerlink" title="保存"></a>保存</h2><p>在内存区中右键-复制到可执行文件-保存文件</p>
-<hr>
-<p>未完待更</p>
-
+        <p>简介：第二天的两道初级Bin题<br>
+        
       
 
       
@@ -261,121 +315,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>简介：对第二天学习的一个小总结，稍微入门了点软件安全的相关名次与汇编的知识</p>
-<h1 id="软件安全"><a href="#软件安全" class="headerlink" title="软件安全"></a>软件安全</h1><hr>
-<p>技术：逆向与漏洞挖掘与利用</p>
-<p>对象：机器代码</p>
-<p>书：逆向工程-核心原理（中间有树叶）</p>
-<h1 id="PWN"><a href="#PWN" class="headerlink" title="PWN"></a>PWN</h1><hr>
-<p>软件漏洞：挖掘- 分析- 利用- 修补</p>
-<p>类型：</p>
-<ol>
-<li>缓冲区溢出</li>
-<li>格式化字符串</li>
-<li>释放后使用</li>
-<li>重复释放</li>
-<li>类型混淆</li>
-<li>缓冲区未初始化</li>
-<li>协议漏洞</li>
-</ol>
-<p>过程：</p>
-<ol>
-<li>使用工具扫描出漏洞</li>
-<li>懂漏洞利用原理</li>
-<li>分析实现漏洞</li>
-<li>写出漏洞利用代码</li>
-<li>高阶操作</li>
-</ol>
-<p>高阶：自动化漏洞挖掘，漏洞缓解措施</p>
-<h1 id="硬件相关"><a href="#硬件相关" class="headerlink" title="硬件相关"></a>硬件相关</h1><hr>
-<p>ALU：计算机在运算时使用的运算逻辑单元</p>
-<p>寄存器：小，速度与ALU相匹配</p>
-<p>内存：大，但速度低  </p>
-<p>CPU：寄存器+ALU</p>
-<h1 id="数值表示"><a href="#数值表示" class="headerlink" title="数值表示"></a>数值表示</h1><hr>
-<p>2b代表二进制</p>
-<p>2h 代表十六进制</p>
-<p>字长：</p>
-<ul>
-<li>bit</li>
-<li>byte</li>
-<li>word</li>
-<li><p>dword</p>
-<p>  1 B = 8 b</p>
-<p>  1 word = 2B</p>
-<p>  1 dword = 2 word = 4B </p>
-</li>
-</ul>
-<h1 id="寄存器相关名词"><a href="#寄存器相关名词" class="headerlink" title="寄存器相关名词"></a>寄存器相关名词</h1><hr>
-<ul>
-<li>EAX  存返回值</li>
-<li>ECX  计数</li>
-<li>EDX 基本无特殊用途</li>
-<li>EBX 基本无特殊用途</li>
-<li>ESP 指向栈顶</li>
-<li>EBP 指向栈底</li>
-<li>ESI  字符串操作source </li>
-<li>EDI  字符串操作destination</li>
-<li>EIP 指向下一条指令</li>
-<li>标志寄存器zf：与上次结果是否1,0相关</li>
-</ul>
-<p>注：所有都是通用寄存器，可以存任意数据。上述是指其特殊额外用法</p>
-<hr>
-<h1 id="寻址方式与汇编常用指令"><a href="#寻址方式与汇编常用指令" class="headerlink" title="寻址方式与汇编常用指令"></a>寻址方式与汇编常用指令</h1><hr>
-<h2 id="寻址"><a href="#寻址" class="headerlink" title="寻址"></a>寻址</h2><ul>
-<li>立即数寻址：MOV EAX,123H</li>
-<li>寄存器寻址：MOV EAX,EBX</li>
-<li>直接寻址：MOV EAX, [12345678H]</li>
-<li>寄存器间接寻址：MOV EAX, [EBX]</li>
-<li>乱七八糟寻址：MOV EAX,123[BX][SI]</li>
-</ul>
-<h2 id="汇编常用指令"><a href="#汇编常用指令" class="headerlink" title="汇编常用指令"></a>汇编常用指令</h2><ul>
-<li>MOV指令：本意是copy，是一个赋值指令  eg：MOV EAX,123H 就是指 EAX=123H</li>
-<li>LEA指令 ：取地址 LEA,EAX,a    将a的地址赋值给EAX</li>
-<li>MOVSX指令：移动字符串操作（ESI与EDI） </li>
-<li>PUSHAD与POPAD指令：很多push与pop的集合</li>
-<li>ADD,SUB指令：加减 ADD,EAX,1 指EAX+=1</li>
-<li>INC,DEC指令：加减指EAX++或—</li>
-<li>NEG指令：negative取反</li>
-<li>CMP指令：比较</li>
-<li>MUL与DIV：乘除</li>
-<li>JMP：无条件转移，跳转到指定地址</li>
-<li>JA,JB：JA 如果大于就跳，JB如果小于就跳</li>
-<li>LOOP 与JCXZ：针对ECX的循环操作</li>
-<li>INT：打断指令（interrupt）</li>
-<li>RET: 返回指令</li>
-<li>NOP: 空操作</li>
-<li><p>CALL：调用函数</p>
-<hr>
-<h1 id="Ollydbg各项操作"><a href="#Ollydbg各项操作" class="headerlink" title="Ollydbg各项操作"></a>Ollydbg各项操作</h1></li>
-</ul>
-<hr>
-<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>分为四大区域，为代码区，寄存器区，堆栈区和内存区</p>
-<h2 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h2><ul>
-<li>空格：编辑代码</li>
-<li>F4：运行到光标指定位置</li>
-<li>F2：设置断点</li>
-<li>Enter: 进入调用函数内部</li>
-<li>F9：调试至断点</li>
-<li>F7：单步调试</li>
-<li>F8：越过call调试</li>
-<li>Ctrl+F9:执行直到返回</li>
-<li>Ctrl+F2:重新运行程序</li>
-<li>Ctrl+ E :编辑指定区域</li>
-<li>Ctrl+ G :选定指定区域</li>
-</ul>
-<h2 id="基本操作流程"><a href="#基本操作流程" class="headerlink" title="基本操作流程"></a>基本操作流程</h2><p>调试的第一步就是找到main函数</p>
-<p>main函数特点：</p>
-<p>开头与结尾会与ESP与EBP操作相关 最后还有RETURN</p>
-<h2 id="找main函数方法"><a href="#找main函数方法" class="headerlink" title="找main函数方法"></a>找main函数方法</h2><ol>
-<li>代码执行法：不断F7执行，基本不用</li>
-<li>层层推进法：F8执行，看到哪步会跳出</li>
-<li><strong>字符串检索法</strong>：利用程序输出的字符串，查找后观察周围，一般就为main函数</li>
-<li><strong>API检索法</strong>： 一些特定操作有特定API 比如跳出的弹框</li>
-<li>特征法(老司机法)：比如vs创建的main函数会先传入三个参数，找到特征点就可以找到main</li>
-</ol>
-<hr>
-
+        <p>简介：对第二天学习的一个小总结，稍微入门了点软件安全的相关名次与汇编的知识<br>
+        
       
 
       
@@ -448,23 +389,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p> 改变系统默认鼠标，当用户浏览个人博客时鼠标指针会自动替换成我们预设好的样式；</p>
-<p> 找到当前使用主题下面的style.css层叠样式表文件，把下面的css代码添加进去；</p>
-<p>  /<strong> 鼠标样式 </strong>/</p>
-<pre><code>body {
-cursor: url(img/鼠标样式图片的名称.cur), auto;
-} 
-</code></pre><p>注：</p>
-<ol>
-<li><p>如果使用png文件，光标可能会与背景产生违和。可以使用Axialis CursorWorkshop这个软件将png格式转换成ani或者cur格式</p>
-</li>
-<li><p>需要把cur文件放入同目录中的img文件夹中</p>
-</li>
-</ol>
-<p> 如图所示<br> <img src="http://ww1.sinaimg.cn/large/005Z7H2Agy1fssxdjgbvmj30dj018dfo.jpg" alt=""></p>
-<p> 我这里使用的是dota2游戏中的光标，直接从游戏文件里提取出来的</p>
-<p> 效果如下:<br> <img src="http://ww3.sinaimg.cn/large/005Z7H2Agy1fst6nwsgjuj303s04d0so.jpg" alt=""></p>
-
+        <p>简介：自定义访问blog时的指针<br>
+        
       
 
       
@@ -804,15 +730,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">吐槽</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ctf</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Bin</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">吐槽</a>
               </li>
             
             <div class="clearfix"></div>
