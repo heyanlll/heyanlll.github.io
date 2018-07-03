@@ -8,17 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>web(一) | ckf&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="yep">
+  <meta name="description" content="简介：集训Day3，真正的web之路就此起航~">
+<meta name="keywords" content="ctf,web">
 <meta property="og:type" content="article">
 <meta property="og:title" content="web(一)">
 <meta property="og:url" content="http://yoursite.com/2018/07/02/web-一/index.html">
 <meta property="og:site_name" content="ckf&#39;s blog">
-<meta property="og:description" content="yep">
+<meta property="og:description" content="简介：集训Day3，真正的web之路就此起航~">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-07-02T01:06:00.189Z">
+<meta property="og:updated_time" content="2018-07-03T02:34:27.506Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="web(一)">
-<meta name="twitter:description" content="yep">
+<meta name="twitter:description" content="简介：集训Day3，真正的web之路就此起航~">
   
     <link rel="alternative" href="/atom.xml" title="ckf&#39;s blog" type="application/atom+xml">
   
@@ -174,7 +175,104 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>简介：集训Day3，真正的web之路就此起航~<br><a id="more"></a></p>
+<h1 id="php基础"><a href="#php基础" class="headerlink" title="php基础"></a>php基础</h1><hr>
+<p>PHP 脚本可以放在文档中的任何位置。</p>
+<p>PHP 脚本以 &lt;?php 开始，以 ?&gt; 结束：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">// PHP code</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><p>$可声明变量</p>
+<h2 id="单双引号"><a href="#单双引号" class="headerlink" title="单双引号"></a>单双引号</h2><p>双引号串中的内容可以被解释而且替换，而单引号串中的内容总被认为是普通字符</p>
+<h2 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h2><p>echo 可以输出一个或多个字符串</p>
+<h2 id="其他名词"><a href="#其他名词" class="headerlink" title="其他名词"></a>其他名词</h2><h3 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h3><p>中文名：统一资源定位符</p>
+<p>作用：提供资源（通常是文档）的路径或位置</p>
+<h3 id="GET请求"><a href="#GET请求" class="headerlink" title="GET请求"></a>GET请求</h3><p>又名<strong>显式提交</strong>，提交的信息会出现在url中，而且数据要在2M以内。当然在url中直接提交的信息也算是get提交。</p>
+<h3 id="POST请求"><a href="#POST请求" class="headerlink" title="POST请求"></a>POST请求</h3><p>又名<strong>隐式提交</strong>，提交的信息不会出现在url中，只有以浏览器开发者模式查看时能看到提交的信息的名称（也看不见值） </p>
+<h1 id="数据库基础与Mysql指令"><a href="#数据库基础与Mysql指令" class="headerlink" title="数据库基础与Mysql指令"></a>数据库基础与Mysql指令</h1><hr>
+<h2 id="Mysql启动"><a href="#Mysql启动" class="headerlink" title="Mysql启动"></a>Mysql启动</h2><ul>
+<li>Linux下启动mysql命令：service mysql start</li>
+<li>Dos登录命令：mysql –uroot –p</li>
+</ul>
+<h2 id="Mysql命令简述"><a href="#Mysql命令简述" class="headerlink" title="Mysql命令简述"></a>Mysql命令简述</h2><table>
+<thead>
+<tr>
+<th>作用</th>
+<th>命令</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>查看数据库</td>
+<td>mysql&gt;show databases;</td>
+</tr>
+<tr>
+<td>选择一个名为<strong>mysql</strong>的数据库进入</td>
+<td>mysql&gt;use <strong>mysql</strong>;</td>
+</tr>
+<tr>
+<td>查看当前数据库所有数据表</td>
+<td>mysql&gt;show tables;</td>
+</tr>
+<tr>
+<td>查看某张表的所有字段信息</td>
+<td>mysql&gt;desc users;</td>
+</tr>
+<tr>
+<td>创建一个名为<strong>mysql</strong>的数据库</td>
+<td>mysql&gt;create database <strong>mysql</strong>;</td>
+</tr>
+<tr>
+<td>删除一个名为<strong>mysql</strong>的数据库</td>
+<td>mysql&gt;drop database <strong>mysql</strong>;</td>
+</tr>
+<tr>
+<td>创建表名为<strong>users</strong>的数据表,字段分别为id(int),username(varchar(20)),password(varchar(50))，id自增</td>
+<td>mysql&gt;create table <strong>users</strong>(id int auto_increment,username varchar(20),password varchar(50));</td>
+</tr>
+<tr>
+<td>修改表名<strong>users</strong>为<strong>bbb</strong></td>
+<td>mysql&gt;alter table <strong>users</strong> rename to <strong>bbb</strong>;</td>
+</tr>
+<tr>
+<td>插入数据至<strong>users</strong></td>
+<td>mysql&gt;insert into <strong>users</strong> (username,password) values(“zz”,”zz_is_handsome”);</td>
+</tr>
+<tr>
+<td>查询数据</td>
+<td>mysql&gt;select id,password from users where username=“zz”;</td>
+</tr>
+</tbody>
+</table>
+<h2 id="附加命令"><a href="#附加命令" class="headerlink" title="附加命令"></a>附加命令</h2><ul>
+<li>union select:   联合查询，即前一条查询语句失败后执行后一条语句</li>
+<li>group by:后接数字，表示按照第几列进行排序</li>
+<li>group_concat:将查询结果以一行的形式输出</li>
+</ul>
+<h2 id="information-schema数据库"><a href="#information-schema数据库" class="headerlink" title="information_schema数据库"></a>information_schema数据库</h2><p>information_schema数据库是MySQL系统自带的数据库，它提供了数据库元数据的访问方式</p>
+<p>通过information_schema我们可以窥透整个MySQL实例的运行情况，可以了结MySQL实例的基本信息，甚至优化调优，维护数据库等。相当于一部百科全书</p>
+<ul>
+<li>Information_schema.tables:  包含所有数据表名</li>
+<li>Information_schema.columns:  包含所有字段</li>
+</ul>
+<p>其中的</p>
+<p>table_schema字段表示数据库名</p>
+<p>table_name字段表示数据表名</p>
+<p>column_name字段表示列名</p>
+<h2 id="sql注入"><a href="#sql注入" class="headerlink" title="sql注入"></a>sql注入</h2><p>用户构造恶意数据去获取某些服务端信息</p>
+<p>条件：</p>
+<ol>
+<li>可控制数据的输入</li>
+<li><strong>将原本执行的代码拼接到了用户的输入</strong></li>
+</ol>
+<p>比如：</p>
+<p>数据库查询语句如下:</p>
+<p>Select * from users where id=‘$id’;</p>
+<p>用户输入是:id=-1‘ or ‘1’=‘1</p>
+<p>此时查询语句为：Select * from users where id=‘-1’ or ‘1’=‘1’;</p>
+<h1 id="Http相关与Burpsuit使用"><a href="#Http相关与Burpsuit使用" class="headerlink" title="Http相关与Burpsuit使用"></a>Http相关与Burpsuit使用</h1><p>截包后可发送到repeater对http头进行修改</p>
+<p>IP伪造 ：X-Forwarded-For  xxxxx</p>
+<p>来源伪造： Referer xxxxx</p>
+<p>也可发送到intruder进行密码爆破</p>
+
       
 
       
@@ -182,6 +280,21 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ctf</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">web</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -246,8 +359,17 @@
   
 <nav id="article-nav">
   
+    <a href="/2018/07/02/简单sql注入与密码爆破/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          简单sql注入与密码爆破
+        
+      </div>
+    </a>
   
-    <a href="/2018/07/01/两道入门Bin题(1)/" id="article-nav-older" class="article-nav-link-wrap">
+  
+    <a href="/2018/07/01/两道入门Bin题/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">两道入门Bin题</div>
       <i class="icon-circle-right"></i>
     </a>
@@ -275,7 +397,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    目录，不存在的…
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#php基础"><span class="toc-number">1.</span> <span class="toc-text">php基础</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#变量"><span class="toc-number">1.1.</span> <span class="toc-text">变量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#单双引号"><span class="toc-number">1.2.</span> <span class="toc-text">单双引号</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#输出"><span class="toc-number">1.3.</span> <span class="toc-text">输出</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其他名词"><span class="toc-number">1.4.</span> <span class="toc-text">其他名词</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#URL"><span class="toc-number">1.4.1.</span> <span class="toc-text">URL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GET请求"><span class="toc-number">1.4.2.</span> <span class="toc-text">GET请求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#POST请求"><span class="toc-number">1.4.3.</span> <span class="toc-text">POST请求</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#数据库基础与Mysql指令"><span class="toc-number">2.</span> <span class="toc-text">数据库基础与Mysql指令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Mysql启动"><span class="toc-number">2.1.</span> <span class="toc-text">Mysql启动</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Mysql命令简述"><span class="toc-number">2.2.</span> <span class="toc-text">Mysql命令简述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#附加命令"><span class="toc-number">2.3.</span> <span class="toc-text">附加命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#information-schema数据库"><span class="toc-number">2.4.</span> <span class="toc-text">information_schema数据库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sql注入"><span class="toc-number">2.5.</span> <span class="toc-text">sql注入</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Http相关与Burpsuit使用"><span class="toc-number">3.</span> <span class="toc-text">Http相关与Burpsuit使用</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -387,19 +509,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">其他</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ctf</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Bin</a>
+                <a href="javascript:void(0)" class="js-tag color3">其他</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">web</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">吐槽</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Bin</a>
               </li>
             
             <div class="clearfix"></div>
