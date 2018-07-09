@@ -18,7 +18,12 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://ww2.sinaimg.cn/large/005Z7H2Agy1ft2gamjabtj30vd0ggq4m.jpg">
 <meta property="og:image" content="http://ww2.sinaimg.cn/large/005Z7H2Agy1ft2gbs52qhj30vt0d5aat.jpg">
-<meta property="og:updated_time" content="2018-07-08T06:55:14.084Z">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/005Z7H2Agy1ft3ltujwaaj30yu0gat9u.jpg">
+<meta property="og:image" content="http://ww4.sinaimg.cn/large/005Z7H2Agy1ft3lu6k2b6j312b0ggq4k.jpg">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/005Z7H2Agy1ft3lul5gx6j30zd0ln0vd.jpg">
+<meta property="og:image" content="http://ww4.sinaimg.cn/large/005Z7H2Agy1ft3lut0ho3j314p0k341h.jpg">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/005Z7H2Agy1ft3lv60g5dj30w40k0767.jpg">
+<meta property="og:updated_time" content="2018-07-09T06:43:41.091Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="web(四)">
 <meta name="twitter:description" content="简介：集训Day9，XSS漏洞原理与利用">
@@ -209,7 +214,7 @@
 <p>原理相同，只是在原本的基础上加入了针对特定字符的过滤，需要进行绕过</p>
 <p>页面源代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">// Is there any input?</span><br><span class="line">if( array_key_exists( &quot;name&quot;, $_GET ) &amp;&amp; $_GET[ &apos;name&apos; ] != NULL ) &#123;</span><br><span class="line">    // Get input</span><br><span class="line">    $name = str_replace( &apos;&lt;script&gt;&apos;, &apos;&apos;, $_GET[ &apos;name&apos; ] );</span><br><span class="line"></span><br><span class="line">    // Feedback for end user</span><br><span class="line">    echo &quot;&lt;pre&gt;Hello $&#123;name&#125;&lt;/pre&gt;&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
 <p>分析后发现是使用了黑名单过滤，我们只需要利用大小写混用绕过即可</p>
-<p>图三:<br><img src="" alt=""></p>
+<p>图三:<br><img src="http://ww2.sinaimg.cn/large/005Z7H2Agy1ft3ltujwaaj30yu0gat9u.jpg" alt=""></p>
 <ol start="3">
 <li>Security-High</li>
 </ol>
@@ -217,7 +222,7 @@
 <p>分析后发现，大小混用绕过已经不可行，得另想办法</p>
 <p>利用img，上传一张不存在的图片，其返回的erro中会附加有script，因此可以输入</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=# onerror=alert(&quot;xss&quot;)&gt;</span><br></pre></td></tr></table></figure>
-<p>图四：<br><img src="" alt=""></p>
+<p>图四：<br><img src="http://ww4.sinaimg.cn/large/005Z7H2Agy1ft3lu6k2b6j312b0ggq4k.jpg" alt=""></p>
 <h3 id="储存型XSS"><a href="#储存型XSS" class="headerlink" title="储存型XSS"></a>储存型XSS</h3><p>不需要用户点击特定的URL就能执行跨站脚本，攻击者可以事先将恶意JS代码上传或者储存到服务器中，只要受害者浏览包含此恶意的代码页面就会执行恶意代码</p>
 <p>DVWA例子</p>
 <ol>
@@ -228,13 +233,13 @@
 </ol>
 <p>页面源代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">if( isset( $_POST[ &apos;btnSign&apos; ] ) ) &#123;</span><br><span class="line">    // Get input</span><br><span class="line">    $message = trim( $_POST[ &apos;mtxMessage&apos; ] );</span><br><span class="line">    $name    = trim( $_POST[ &apos;txtName&apos; ] );</span><br><span class="line"></span><br><span class="line">    // Sanitize message input</span><br><span class="line">    $message = strip_tags( addslashes( $message ) );</span><br><span class="line">    $message = ((isset($GLOBALS[&quot;___mysqli_ston&quot;]) &amp;&amp; is_object($GLOBALS[&quot;___mysqli_ston&quot;])) ? mysqli_real_escape_string($GLOBALS[&quot;___mysqli_ston&quot;],  $message ) : ((trigger_error(&quot;[MySQLConverterToo] Fix the mysql_escape_string() call! This code does not work.&quot;, E_USER_ERROR)) ? &quot;&quot; : &quot;&quot;));</span><br><span class="line">    $message = htmlspecialchars( $message );</span><br><span class="line"></span><br><span class="line">    // Sanitize name input</span><br><span class="line">    $name = str_replace( &apos;&lt;script&gt;&apos;, &apos;&apos;, $name );</span><br><span class="line">    $name = ((isset($GLOBALS[&quot;___mysqli_ston&quot;]) &amp;&amp; is_object($GLOBALS[&quot;___mysqli_ston&quot;])) ? mysqli_real_escape_string($GLOBALS[&quot;___mysqli_ston&quot;],  $name ) : ((trigger_error(&quot;[MySQLConverterToo] Fix the mysql_escape_string() call! This code does not work.&quot;, E_USER_ERROR)) ? &quot;&quot; : &quot;&quot;));</span><br><span class="line"></span><br><span class="line">    // Update database</span><br><span class="line">    $query  = &quot;INSERT INTO guestbook ( comment, name ) VALUES ( &apos;$message&apos;, &apos;$name&apos; );&quot;;</span><br><span class="line">    $result = mysqli_query($GLOBALS[&quot;___mysqli_ston&quot;],  $query ) or die( &apos;&lt;pre&gt;&apos; . ((is_object($GLOBALS[&quot;___mysqli_ston&quot;])) ? mysqli_error($GLOBALS[&quot;___mysqli_ston&quot;]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)) . &apos;&lt;/pre&gt;&apos; );</span><br><span class="line"></span><br><span class="line">    //mysql_close();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
 <p>发现针对message的过滤很多，对name的过滤较少。但name输入框对长度有限制，可以利用截包，无视其长度限制</p>
-<p>图五:<br><img src="" alt=""></p>
-<p>图六:<br><img src="" alt=""></p>
+<p>图五:<br><img src="http://ww2.sinaimg.cn/large/005Z7H2Agy1ft3lul5gx6j30zd0ln0vd.jpg" alt=""></p>
+<p>图六:<br><img src="http://ww4.sinaimg.cn/large/005Z7H2Agy1ft3lut0ho3j314p0k341h.jpg" alt=""></p>
 <ol start="3">
 <li>Security-High</li>
 </ol>
 <p>与中等难度原理相通，同样是通过在过滤较少的name一栏输入恶意代码，同时绕过方法与反射型high的绕过方法一样</p>
-<p>图七：<br><img src="" alt=""></p>
+<p>图七：<br><img src="http://ww2.sinaimg.cn/large/005Z7H2Agy1ft3lv60g5dj30w40k0767.jpg" alt=""></p>
 <p>成功</p>
 <h2 id="XSS盗用cookie登录"><a href="#XSS盗用cookie登录" class="headerlink" title="XSS盗用cookie登录"></a>XSS盗用cookie登录</h2><ol>
 <li>编写接受cookie的php脚本</li>
@@ -330,6 +335,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2018/07/09/Bin-四/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Bin(四)
+        
+      </div>
+    </a>
   
   
     <a href="/2018/07/07/Pwn-一/" id="article-nav-older" class="article-nav-link-wrap">
@@ -480,11 +494,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">其他</a>
+                <a href="javascript:void(0)" class="js-tag color4">Pwn</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Pwn</a>
+                <a href="javascript:void(0)" class="js-tag color3">其他</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -641,5 +655,5 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
 
 </div>
   </div>
-<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/"});</script></body>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true}});</script></body>
 </html>
