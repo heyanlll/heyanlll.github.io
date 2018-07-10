@@ -6,18 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2018 | ckf&#39;s blog</title>
+  <title>web(五) | ckf&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="yep">
-<meta property="og:type" content="website">
-<meta property="og:title" content="ckf&#39;s blog">
-<meta property="og:url" content="http://yoursite.com/archives/2018/index.html">
+  <meta name="description" content="简介：集训Day11，利用php伪协议攻击">
+<meta name="keywords" content="ctf,web">
+<meta property="og:type" content="article">
+<meta property="og:title" content="web(五)">
+<meta property="og:url" content="http://yoursite.com/2018/07/10/web-五/index.html">
 <meta property="og:site_name" content="ckf&#39;s blog">
-<meta property="og:description" content="yep">
+<meta property="og:description" content="简介：集训Day11，利用php伪协议攻击">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-07-10T08:50:37.431Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ckf&#39;s blog">
-<meta name="twitter:description" content="yep">
+<meta name="twitter:title" content="web(五)">
+<meta name="twitter:description" content="简介：集训Day11，利用php伪协议攻击">
   
     <link rel="alternative" href="/atom.xml" title="ckf&#39;s blog" type="application/atom+xml">
   
@@ -155,36 +157,80 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-web-五" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      web(五)
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/07/10/web-五/" class="archive-article-date">
+
+        
+        <a href="/2018/07/10/web-五/" class="archive-article-date">
   	<time datetime="2018-07-10T06:27:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-10</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/07/10/web-五/">web(五)</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>简介：集训Day11，利用php伪协议攻击<br><a id="more"></a></p>
+<h1 id="php伪协议"><a href="#php伪协议" class="headerlink" title="php伪协议"></a>php伪协议</h1><hr>
+<p>自定义协议就叫伪协议，格式：zzz：//xxxxxxx</p>
+<p>支持的种类有这12种</p>
+<ul>
+<li>file:// — 访问本地文件系统</li>
+<li>http:// — 访问 HTTP(s) 网址</li>
+<li>ftp:// — 访问 FTP(s) URLs</li>
+<li>php:// — 访问各个输入/输出流（I/O streams）</li>
+<li>zlib:// — 压缩流</li>
+<li>data:// — 数据（RFC 2397）</li>
+<li>glob:// — 查找匹配的文件路径模式</li>
+<li>phar:// — PHP 归档</li>
+<li>ssh2:// — Secure Shell 2</li>
+<li>rar:// — RAR</li>
+<li>ogg:// — 音频流</li>
+<li>expect:// — 处理交互式的流</li>
+</ul>
+<p>我们可以利用这些php自带的协议去进行攻击，要注意的是，在php.ini中两个重要的配置会影响到fopen等等和include等等函数对于伪协议的支持</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">allow_url_fopen:能否远程文件包含</span><br><span class="line"></span><br><span class="line">allow_url_include:能否使用伪协议</span><br></pre></td></tr></table></figure>
+<p>通过观察这两个配置的开启与否来确定攻击方向</p>
+<h1 id="简单利用"><a href="#简单利用" class="headerlink" title="简单利用"></a>简单利用</h1><hr>
+<h2 id="php-—-（I-O-streams）"><a href="#php-—-（I-O-streams）" class="headerlink" title="php:// — （I/O streams）"></a>php:// — （I/O streams）</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?file=php://filter/convert.base64-encode/resource=xxx.php</span><br></pre></td></tr></table></figure>
+<p>可以说这是最常使用的一个伪协议，一般可以利用进行任意文件读取。</p>
+<p>php://filter是一种元封装器，设计用于”数据流打开”时的”筛选过滤”应用，对本地磁盘文件进行读写。简单来讲就是可以在执行代码前将代码换个方式读取出来，只是读取，不需要开启allow_url_include；</p>
+<p>我们可以利用此输入来获取网页php源码</p>
+<h2 id="变量覆盖漏洞"><a href="#变量覆盖漏洞" class="headerlink" title="变量覆盖漏洞"></a>变量覆盖漏洞</h2><p>extract()变量覆盖</p>
+<p>extract()函数能将变量从数组导入当前的符号表，导出变量时，就可能发生变量覆盖</p>
+<h2 id="php-input"><a href="#php-input" class="headerlink" title="php://input"></a>php://input</h2><p>php://input 是个可以访问请求的原始数据的只读流。将post请求中的数据作为PHP代码执行。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?user=php://input</span><br></pre></td></tr></table></figure>
+<p>常用post：</p>
+<ol>
+<li>&lt;?php phpinfo(); ?&gt; 查看phpinfo</li>
+<li>&lt;?php print_r(scandir(“.”)); ?&gt;</li>
+<li>&lt;?php print_r(scandir(“E:/phpstudy/WWW”)); ?&gt;指定目录</li>
+</ol>
+<h2 id="eval闭合漏洞"><a href="#eval闭合漏洞" class="headerlink" title="eval闭合漏洞"></a>eval闭合漏洞</h2><p>类似于sql注入的方法，将前后闭合</p>
+<p>想知道flag.php中的内容，则可以用：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">);print_r(file(&quot;./flag.php&quot;)</span><br></pre></td></tr></table></figure></p>
+<p>或者<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">);print_r(file_get_contents(&quot;./flag.php&quot;)</span><br></pre></td></tr></table></figure></p>
+<p>需要注意的是file_get_contents不能用于打印php文件</p>
+<h2 id="phar"><a href="#phar" class="headerlink" title="phar://"></a>phar://</h2><p>上传文件时使用，构造php代码，压缩成zip文件，然后将其后缀名改成jpg后上传（不然会被过滤掉），使用如下伪协议即可解压后执行恶意代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?file=phar://upload/xxx.jpg/xx</span><br></pre></td></tr></table></figure>
+<h1 id="文件包含漏洞"><a href="#文件包含漏洞" class="headerlink" title="文件包含漏洞"></a>文件包含漏洞</h1><hr>
+<p>文件包含漏洞是“代码注入”的一种。常见导致文件包含的函数如下：</p>
+<p>PHP：include(),include_once(),require(),require_once(),fopen(),readfile()….</p>
+<p>使用上述函数包含一个新文件时，会将该文件作为php代码执行，而且并不会在意该被包含的文件是什么类型的，可以利用这一特性实施攻击</p>
 
-        <div class="article-info info-on-right">
-          
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -200,190 +246,118 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/07/10/web-五/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/07/09/Bin-四/" class="archive-article-date">
-  	<time datetime="2018-07-09T06:33:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-09</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2018/07/09/Bin-四/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Bin(四)</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/07/09/Bin-四/">Bin(四)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ctf</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Bin</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#php伪协议"><span class="toc-number">1.</span> <span class="toc-text">php伪协议</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#简单利用"><span class="toc-number">2.</span> <span class="toc-text">简单利用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#php-—-（I-O-streams）"><span class="toc-number">2.1.</span> <span class="toc-text">php:// — （I/O streams）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#变量覆盖漏洞"><span class="toc-number">2.2.</span> <span class="toc-text">变量覆盖漏洞</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#php-input"><span class="toc-number">2.3.</span> <span class="toc-text">php://input</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#eval闭合漏洞"><span class="toc-number">2.4.</span> <span class="toc-text">eval闭合漏洞</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#phar"><span class="toc-number">2.5.</span> <span class="toc-text">phar://</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#文件包含漏洞"><span class="toc-number">3.</span> <span class="toc-text">文件包含漏洞</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/07/08/web-四/" class="archive-article-date">
-  	<time datetime="2018-07-08T05:04:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-08</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/07/08/web-四/">web(四)</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ctf</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">web</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/07/07/Pwn-一/" class="archive-article-date">
-  	<time datetime="2018-07-07T12:19:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/07/07/Pwn-一/">Pwn(一)</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ctf</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Pwn</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/07/06/web-三/" class="archive-article-date">
-  	<time datetime="2018-07-06T05:47:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/07/06/web-三/">web(三)</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ctf</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">web</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/2018/page/2/">2</a><a class="page-number" href="/archives/2018/page/3/">3</a><a class="extend next" rel="next" href="/archives/2018/page/2/">Next &raquo;</a>
-    </nav>
   
 
 
@@ -407,8 +381,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
