@@ -6,20 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>初识软件安全 | ckf&#39;s blog</title>
+  <title>Archives | ckf&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="简介：对第二天学习的一个小总结，稍微入门了点软件安全的相关名次与汇编的知识">
-<meta name="keywords" content="ctf">
-<meta property="og:type" content="article">
-<meta property="og:title" content="初识软件安全">
-<meta property="og:url" content="http://yoursite.com/2018/07/01/初识软件安全/index.html">
+  <meta name="description" content="yep">
+<meta property="og:type" content="website">
+<meta property="og:title" content="ckf&#39;s blog">
+<meta property="og:url" content="http://yoursite.com/archives/page/5/index.html">
 <meta property="og:site_name" content="ckf&#39;s blog">
-<meta property="og:description" content="简介：对第二天学习的一个小总结，稍微入门了点软件安全的相关名次与汇编的知识">
+<meta property="og:description" content="yep">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-07-02T09:25:39.173Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="初识软件安全">
-<meta name="twitter:description" content="简介：对第二天学习的一个小总结，稍微入门了点软件安全的相关名次与汇编的知识">
+<meta name="twitter:title" content="ckf&#39;s blog">
+<meta name="twitter:description" content="yep">
   
     <link rel="alternative" href="/atom.xml" title="ckf&#39;s blog" type="application/atom+xml">
   
@@ -157,148 +155,36 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-初识软件安全" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      初识软件安全
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2018" class="archive-year">2018</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2018/05/12/post”/" class="archive-article-date">
+  	<time datetime="2018-05-12T09:54:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-12</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2018/05/12/post”/">my new post</a>
     </h1>
   
 
-        
-        <a href="/2018/07/01/初识软件安全/" class="archive-article-date">
-  	<time datetime="2018-07-01T08:52:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-01</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>简介：对第二天学习的一个小总结，稍微入门了点软件安全的相关名次与汇编的知识<br><a id="more"></a></p>
-<h1 id="软件安全"><a href="#软件安全" class="headerlink" title="软件安全"></a>软件安全</h1><hr>
-<p>技术：逆向与漏洞挖掘与利用</p>
-<p>对象：机器代码</p>
-<p>书：逆向工程-核心原理（中间有树叶）</p>
-<h1 id="PWN"><a href="#PWN" class="headerlink" title="PWN"></a>PWN</h1><hr>
-<p>软件漏洞：挖掘- 分析- 利用- 修补</p>
-<p>类型：</p>
-<ol>
-<li>缓冲区溢出</li>
-<li>格式化字符串</li>
-<li>释放后使用</li>
-<li>重复释放</li>
-<li>类型混淆</li>
-<li>缓冲区未初始化</li>
-<li>协议漏洞</li>
-</ol>
-<p>过程：</p>
-<ol>
-<li>使用工具扫描出漏洞</li>
-<li>懂漏洞利用原理</li>
-<li>分析实现漏洞</li>
-<li>写出漏洞利用代码</li>
-<li>高阶操作</li>
-</ol>
-<p>高阶：自动化漏洞挖掘，漏洞缓解措施</p>
-<h1 id="硬件相关"><a href="#硬件相关" class="headerlink" title="硬件相关"></a>硬件相关</h1><hr>
-<p>ALU：计算机在运算时使用的运算逻辑单元</p>
-<p>寄存器：小，速度与ALU相匹配</p>
-<p>内存：大，但速度低  </p>
-<p>CPU：寄存器+ALU</p>
-<h1 id="数值表示"><a href="#数值表示" class="headerlink" title="数值表示"></a>数值表示</h1><hr>
-<p>2b代表二进制</p>
-<p>2h 代表十六进制</p>
-<p>字长：</p>
-<ul>
-<li>bit</li>
-<li>byte</li>
-<li>word</li>
-<li><p>dword</p>
-<p>  1 B = 8 b</p>
-<p>  1 word = 2B</p>
-<p>  1 dword = 2 word = 4B </p>
-</li>
-</ul>
-<h1 id="寄存器相关名词"><a href="#寄存器相关名词" class="headerlink" title="寄存器相关名词"></a>寄存器相关名词</h1><hr>
-<ul>
-<li>EAX  存返回值</li>
-<li>ECX  计数</li>
-<li>EDX 基本无特殊用途</li>
-<li>EBX 基本无特殊用途</li>
-<li>ESP 指向栈顶</li>
-<li>EBP 指向栈底</li>
-<li>ESI  字符串操作source </li>
-<li>EDI  字符串操作destination</li>
-<li>EIP 指向下一条指令</li>
-<li>标志寄存器zf：与上次结果是否1,0相关</li>
-</ul>
-<p>注：所有都是通用寄存器，可以存任意数据。上述是指其特殊额外用法</p>
-<hr>
-<h1 id="寻址方式与汇编常用指令"><a href="#寻址方式与汇编常用指令" class="headerlink" title="寻址方式与汇编常用指令"></a>寻址方式与汇编常用指令</h1><hr>
-<h2 id="寻址"><a href="#寻址" class="headerlink" title="寻址"></a>寻址</h2><ul>
-<li>立即数寻址：MOV EAX,123H</li>
-<li>寄存器寻址：MOV EAX,EBX</li>
-<li>直接寻址：MOV EAX, [12345678H]</li>
-<li>寄存器间接寻址：MOV EAX, [EBX]</li>
-<li>乱七八糟寻址：MOV EAX,123[BX][SI]</li>
-</ul>
-<h2 id="汇编常用指令"><a href="#汇编常用指令" class="headerlink" title="汇编常用指令"></a>汇编常用指令</h2><ul>
-<li>MOV指令：本意是copy，是一个赋值指令  eg：MOV EAX,123H 就是指 EAX=123H</li>
-<li>LEA指令 ：取地址 LEA,EAX,a    将a的地址赋值给EAX</li>
-<li>MOVSX指令：移动字符串操作（ESI与EDI） </li>
-<li>PUSHAD与POPAD指令：很多push与pop的集合</li>
-<li>ADD,SUB指令：加减 ADD,EAX,1 指EAX+=1</li>
-<li>INC,DEC指令：加减指EAX++或—</li>
-<li>NEG指令：negative取反</li>
-<li>CMP指令：比较</li>
-<li>MUL与DIV：乘除</li>
-<li>JMP：无条件转移，跳转到指定地址</li>
-<li>JA,JB：JA 如果大于就跳，JB如果小于就跳</li>
-<li>LOOP 与JCXZ：针对ECX的循环操作</li>
-<li>INT：打断指令（interrupt）</li>
-<li>RET: 返回指令</li>
-<li>NOP: 空操作</li>
-<li><p>CALL：调用函数</p>
-<hr>
-<h1 id="Ollydbg各项操作"><a href="#Ollydbg各项操作" class="headerlink" title="Ollydbg各项操作"></a>Ollydbg各项操作</h1></li>
-</ul>
-<hr>
-<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>分为四大区域，为代码区，寄存器区，堆栈区和内存区</p>
-<h2 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h2><ul>
-<li>空格：编辑代码</li>
-<li>F4：运行到光标指定位置</li>
-<li>F2：设置断点</li>
-<li>Enter: 进入调用函数内部</li>
-<li>F9：调试至断点</li>
-<li>F7：单步调试</li>
-<li>F8：越过call调试</li>
-<li>Ctrl+F9:执行直到返回</li>
-<li>Ctrl+F2:重新运行程序</li>
-<li>Ctrl+ E :编辑指定区域</li>
-<li>Ctrl+ G :选定指定区域</li>
-</ul>
-<h2 id="基本操作流程"><a href="#基本操作流程" class="headerlink" title="基本操作流程"></a>基本操作流程</h2><p>调试的第一步就是找到main函数</p>
-<p>main函数特点：</p>
-<p>开头与结尾会与ESP与EBP操作相关 最后还有RETURN</p>
-<h2 id="找main函数方法"><a href="#找main函数方法" class="headerlink" title="找main函数方法"></a>找main函数方法</h2><ol>
-<li>代码执行法：不断F7执行，基本不用</li>
-<li>层层推进法：F8执行，看到哪步会跳出</li>
-<li><strong>字符串检索法</strong>：利用程序输出的字符串，查找后观察周围，一般就为main函数</li>
-<li><strong>API检索法</strong>： 一些特定操作有特定API 比如跳出的弹框</li>
-<li>特征法(老司机法)：比如vs创建的main函数会先传入三个参数，找到特征点就可以找到main</li>
-</ol>
-<hr>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -306,131 +192,41 @@
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ctf</a>
         		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">其他</a>
+        		</li>
       		
 		</ul>
 	</div>
 
-      
+          
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/blog//" class="article-tag-list-link color5">blog</a>
+        		</li>
+      		
+		</ul>
+	</div>
 
-      
 
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/07/01/初识软件安全/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2018/07/01/两道入门Bin题/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          两道入门Bin题
-        
-      </div>
-    </a>
   
   
-    <a href="/2018/06/30/how_to_change_/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">如何修改github博客内的鼠标指针</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-        <div class="toc-container tooltip-left">
-            <i class="icon-font icon-category"></i>
-            <div class="tooltip tooltip-east">
-                <span class="tooltip-item">
-                </span>
-                <span class="tooltip-content">
-                    <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#软件安全"><span class="toc-number">1.</span> <span class="toc-text">软件安全</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#PWN"><span class="toc-number">2.</span> <span class="toc-text">PWN</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#硬件相关"><span class="toc-number">3.</span> <span class="toc-text">硬件相关</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#数值表示"><span class="toc-number">4.</span> <span class="toc-text">数值表示</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#寄存器相关名词"><span class="toc-number">5.</span> <span class="toc-text">寄存器相关名词</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#寻址方式与汇编常用指令"><span class="toc-number">6.</span> <span class="toc-text">寻址方式与汇编常用指令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#寻址"><span class="toc-number">6.1.</span> <span class="toc-text">寻址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#汇编常用指令"><span class="toc-number">6.2.</span> <span class="toc-text">汇编常用指令</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Ollydbg各项操作"><span class="toc-number">7.</span> <span class="toc-text">Ollydbg各项操作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#简介"><span class="toc-number">7.1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#快捷键"><span class="toc-number">7.2.</span> <span class="toc-text">快捷键</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基本操作流程"><span class="toc-number">7.3.</span> <span class="toc-text">基本操作流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#找main函数方法"><span class="toc-number">7.4.</span> <span class="toc-text">找main函数方法</span></a></li></ol></li></ol>
-                    </div>
-                </span>
-            </div>
-        </div>
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
-
+    
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/archives/page/4/">&laquo; Prev</a><a class="page-number" href="/archives/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/3/">3</a><a class="page-number" href="/archives/page/4/">4</a><span class="page-number current">5</span>
+    </nav>
   
 
 
@@ -454,8 +250,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

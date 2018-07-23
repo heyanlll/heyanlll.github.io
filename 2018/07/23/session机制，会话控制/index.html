@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>初识软件安全 | ckf&#39;s blog</title>
+  <title>session机制，会话控制 | ckf&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="简介：对第二天学习的一个小总结，稍微入门了点软件安全的相关名次与汇编的知识">
-<meta name="keywords" content="ctf">
+  <meta name="description" content="简介：今天实习遇到了蛮多关于session知识，赶紧学习学习~">
+<meta name="keywords" content="web">
 <meta property="og:type" content="article">
-<meta property="og:title" content="初识软件安全">
-<meta property="og:url" content="http://yoursite.com/2018/07/01/初识软件安全/index.html">
+<meta property="og:title" content="session机制，会话控制">
+<meta property="og:url" content="http://yoursite.com/2018/07/23/session机制，会话控制/index.html">
 <meta property="og:site_name" content="ckf&#39;s blog">
-<meta property="og:description" content="简介：对第二天学习的一个小总结，稍微入门了点软件安全的相关名次与汇编的知识">
+<meta property="og:description" content="简介：今天实习遇到了蛮多关于session知识，赶紧学习学习~">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-07-02T09:25:39.173Z">
+<meta property="og:updated_time" content="2018-07-23T15:25:31.041Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="初识软件安全">
-<meta name="twitter:description" content="简介：对第二天学习的一个小总结，稍微入门了点软件安全的相关名次与汇编的知识">
+<meta name="twitter:title" content="session机制，会话控制">
+<meta name="twitter:description" content="简介：今天实习遇到了蛮多关于session知识，赶紧学习学习~">
   
     <link rel="alternative" href="/atom.xml" title="ckf&#39;s blog" type="application/atom+xml">
   
@@ -157,140 +157,54 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-初识软件安全" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-session机制，会话控制" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      初识软件安全
+      session机制，会话控制
     </h1>
   
 
         
-        <a href="/2018/07/01/初识软件安全/" class="archive-article-date">
-  	<time datetime="2018-07-01T08:52:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-01</time>
+        <a href="/2018/07/23/session机制，会话控制/" class="archive-article-date">
+  	<time datetime="2018-07-23T14:38:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-23</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>简介：对第二天学习的一个小总结，稍微入门了点软件安全的相关名次与汇编的知识<br><a id="more"></a></p>
-<h1 id="软件安全"><a href="#软件安全" class="headerlink" title="软件安全"></a>软件安全</h1><hr>
-<p>技术：逆向与漏洞挖掘与利用</p>
-<p>对象：机器代码</p>
-<p>书：逆向工程-核心原理（中间有树叶）</p>
-<h1 id="PWN"><a href="#PWN" class="headerlink" title="PWN"></a>PWN</h1><hr>
-<p>软件漏洞：挖掘- 分析- 利用- 修补</p>
-<p>类型：</p>
-<ol>
-<li>缓冲区溢出</li>
-<li>格式化字符串</li>
-<li>释放后使用</li>
-<li>重复释放</li>
-<li>类型混淆</li>
-<li>缓冲区未初始化</li>
-<li>协议漏洞</li>
+        <p>简介：今天实习遇到了蛮多关于session知识，赶紧学习学习~<br><a id="more"></a></p>
+<h1 id="Session"><a href="#Session" class="headerlink" title="Session"></a>Session</h1><h2 id="百科定义"><a href="#百科定义" class="headerlink" title="百科定义"></a>百科定义</h2><p>称之为“会话控制”，Session对象存储特定用户会话所需的属性及配置信息。这样，当用户在应用程序的 Web 页之间跳转时，存储在 Session 对象中的变量将不会丢失，而是在整个用户会话中一直存在下去。当用户请求来自应用程序的 Web 页时，如果该用户还没有会话，则 Web 服务器将自动创建一个 Session 对象。当会话过期或被放弃后，服务器将终止该会话。Session 对象最常见的一个用法就是存储用户的首选项。例如，如果用户指明不喜欢查看图形，就可以将该信息存储在 Session 对象中。有关使用 Session 对象的详细信息，请参阅“ASP 应用程序”部分的“管理会话”。</p>
+<p>简要来说（在web开发语境下）是指一类用来在客户端与服务端之间保持状态的解决方案</p>
+<h2 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h2><p>（1）当一个session第一次被启用时，一个唯一的标识被存储于本地的cookie中。</p>
+<p>（2）首先使用session_start()函数，PHP从session仓库中加载已经存储的session变量。</p>
+<p>（3）当执行PHP脚本时，通过使用session_register()函数注册session变量。</p>
+<p>（4）当PHP脚本执行结束时，未被销毁的session变量会被自动保存在本地一定路径下的session库中，这个路径可以通过php.ini文件中的session.save_path指定，下次浏览网页时可以加载使用。</p>
+<h1 id="与cookie相关"><a href="#与cookie相关" class="headerlink" title="与cookie相关"></a>与cookie相关</h1><h2 id="HTTP协议与状态保持"><a href="#HTTP协议与状态保持" class="headerlink" title="HTTP协议与状态保持"></a>HTTP协议与状态保持</h2><p>HTTP协议本身是无状态的，其每一次请求相互独立<br>（顾客与自动贩卖机之间的关系）</p>
+<p>然而，按需生成动态信息会使web变得更加有用，一方面，是html逐步添加了表单，脚本，DOM等客户端行为，另一方面在服务端则出现了CGI规范以响应客户端的动态请求，因此，原作为传输载体的HTTP协议也添加上了文件上载、cookie等特性</p>
+<h2 id="cookie与session的产生"><a href="#cookie与session的产生" class="headerlink" title="cookie与session的产生"></a>cookie与session的产生</h2><p>cookie与session方式，本质上是为了按需生成动态信息，增强web的交互能力，然而，这两者储存信息的方式有所不同</p>
+<p>cookies：采用客户端保持状态的方案<br>session: 采用服务端保持状态的方案</p>
+<p>同时我们也可知，采用服务端保持状态的方案在客户端也需要一个标识，因此session机制可能需要借助cookie机制来达成目的。</p>
+<h2 id="cookie与session的机制与原理"><a href="#cookie与session的机制与原理" class="headerlink" title="cookie与session的机制与原理"></a>cookie与session的机制与原理</h2><h3 id="cookie的使用："><a href="#cookie的使用：" class="headerlink" title="cookie的使用："></a>cookie的使用：</h3><ol>
+<li>是由浏览器按照一定的原则在后台自动发送给服务器的。</li>
+<li>浏览器检查所有存储的cookie，如果某个cookie所声明的作用范围大于等于将要请求的资源所在的位置，则把该cookie附在请求资源的HTTP请求头上发送给服务器。</li>
+<li>cookie的内容主要包括：名字，值，过期时间，路径和域。路径与域一起构成cookie的作用范围。若不设置过期时间，则表示这个cookie的生命期为浏览器会话期间，关闭浏览器窗口，cookie就消失。这种生命期为浏览器会话期的cookie被称为会话cookie。会话cookie一般保存在内存里，当然这种行为并不是规范规定的。</li>
+<li>若设置了过期时间，浏览器就会把cookie保存到硬盘上，关闭后再次打开浏览器，这些cookie仍然有效直到超过设定的过期时间。</li>
+<li>存储在硬盘上的cookie可以在不同的浏览器进程间共享，比如两个IE窗口。而对于保存在内存里的cookie，不同的浏览器有不同的处理方式。 </li>
 </ol>
-<p>过程：</p>
-<ol>
-<li>使用工具扫描出漏洞</li>
-<li>懂漏洞利用原理</li>
-<li>分析实现漏洞</li>
-<li>写出漏洞利用代码</li>
-<li>高阶操作</li>
-</ol>
-<p>高阶：自动化漏洞挖掘，漏洞缓解措施</p>
-<h1 id="硬件相关"><a href="#硬件相关" class="headerlink" title="硬件相关"></a>硬件相关</h1><hr>
-<p>ALU：计算机在运算时使用的运算逻辑单元</p>
-<p>寄存器：小，速度与ALU相匹配</p>
-<p>内存：大，但速度低  </p>
-<p>CPU：寄存器+ALU</p>
-<h1 id="数值表示"><a href="#数值表示" class="headerlink" title="数值表示"></a>数值表示</h1><hr>
-<p>2b代表二进制</p>
-<p>2h 代表十六进制</p>
-<p>字长：</p>
-<ul>
-<li>bit</li>
-<li>byte</li>
-<li>word</li>
-<li><p>dword</p>
-<p>  1 B = 8 b</p>
-<p>  1 word = 2B</p>
-<p>  1 dword = 2 word = 4B </p>
-</li>
-</ul>
-<h1 id="寄存器相关名词"><a href="#寄存器相关名词" class="headerlink" title="寄存器相关名词"></a>寄存器相关名词</h1><hr>
-<ul>
-<li>EAX  存返回值</li>
-<li>ECX  计数</li>
-<li>EDX 基本无特殊用途</li>
-<li>EBX 基本无特殊用途</li>
-<li>ESP 指向栈顶</li>
-<li>EBP 指向栈底</li>
-<li>ESI  字符串操作source </li>
-<li>EDI  字符串操作destination</li>
-<li>EIP 指向下一条指令</li>
-<li>标志寄存器zf：与上次结果是否1,0相关</li>
-</ul>
-<p>注：所有都是通用寄存器，可以存任意数据。上述是指其特殊额外用法</p>
-<hr>
-<h1 id="寻址方式与汇编常用指令"><a href="#寻址方式与汇编常用指令" class="headerlink" title="寻址方式与汇编常用指令"></a>寻址方式与汇编常用指令</h1><hr>
-<h2 id="寻址"><a href="#寻址" class="headerlink" title="寻址"></a>寻址</h2><ul>
-<li>立即数寻址：MOV EAX,123H</li>
-<li>寄存器寻址：MOV EAX,EBX</li>
-<li>直接寻址：MOV EAX, [12345678H]</li>
-<li>寄存器间接寻址：MOV EAX, [EBX]</li>
-<li>乱七八糟寻址：MOV EAX,123[BX][SI]</li>
-</ul>
-<h2 id="汇编常用指令"><a href="#汇编常用指令" class="headerlink" title="汇编常用指令"></a>汇编常用指令</h2><ul>
-<li>MOV指令：本意是copy，是一个赋值指令  eg：MOV EAX,123H 就是指 EAX=123H</li>
-<li>LEA指令 ：取地址 LEA,EAX,a    将a的地址赋值给EAX</li>
-<li>MOVSX指令：移动字符串操作（ESI与EDI） </li>
-<li>PUSHAD与POPAD指令：很多push与pop的集合</li>
-<li>ADD,SUB指令：加减 ADD,EAX,1 指EAX+=1</li>
-<li>INC,DEC指令：加减指EAX++或—</li>
-<li>NEG指令：negative取反</li>
-<li>CMP指令：比较</li>
-<li>MUL与DIV：乘除</li>
-<li>JMP：无条件转移，跳转到指定地址</li>
-<li>JA,JB：JA 如果大于就跳，JB如果小于就跳</li>
-<li>LOOP 与JCXZ：针对ECX的循环操作</li>
-<li>INT：打断指令（interrupt）</li>
-<li>RET: 返回指令</li>
-<li>NOP: 空操作</li>
-<li><p>CALL：调用函数</p>
-<hr>
-<h1 id="Ollydbg各项操作"><a href="#Ollydbg各项操作" class="headerlink" title="Ollydbg各项操作"></a>Ollydbg各项操作</h1></li>
-</ul>
-<hr>
-<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>分为四大区域，为代码区，寄存器区，堆栈区和内存区</p>
-<h2 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h2><ul>
-<li>空格：编辑代码</li>
-<li>F4：运行到光标指定位置</li>
-<li>F2：设置断点</li>
-<li>Enter: 进入调用函数内部</li>
-<li>F9：调试至断点</li>
-<li>F7：单步调试</li>
-<li>F8：越过call调试</li>
-<li>Ctrl+F9:执行直到返回</li>
-<li>Ctrl+F2:重新运行程序</li>
-<li>Ctrl+ E :编辑指定区域</li>
-<li>Ctrl+ G :选定指定区域</li>
-</ul>
-<h2 id="基本操作流程"><a href="#基本操作流程" class="headerlink" title="基本操作流程"></a>基本操作流程</h2><p>调试的第一步就是找到main函数</p>
-<p>main函数特点：</p>
-<p>开头与结尾会与ESP与EBP操作相关 最后还有RETURN</p>
-<h2 id="找main函数方法"><a href="#找main函数方法" class="headerlink" title="找main函数方法"></a>找main函数方法</h2><ol>
-<li>代码执行法：不断F7执行，基本不用</li>
-<li>层层推进法：F8执行，看到哪步会跳出</li>
-<li><strong>字符串检索法</strong>：利用程序输出的字符串，查找后观察周围，一般就为main函数</li>
-<li><strong>API检索法</strong>： 一些特定操作有特定API 比如跳出的弹框</li>
-<li>特征法(老司机法)：比如vs创建的main函数会先传入三个参数，找到特征点就可以找到main</li>
-</ol>
-<hr>
+<h3 id="session机制："><a href="#session机制：" class="headerlink" title="session机制："></a>session机制：</h3><p>session机制是一种服务器端的机制，服务器使用一种类似于散列表的结构（也可能就是使用散列表）来保存信息。 </p>
+<h3 id="sessionID"><a href="#sessionID" class="headerlink" title="sessionID"></a>sessionID</h3><p>当程序需要为某个客户端的请求创建一个session时，服务器首先检查这个客户端的请求里是否已包含了一个session标识————称为session id，如果已包含则说明以前已经为此客户端创建过session，服务器就按照session id把这个session检索出来使用（检索不到，会新建一个），如果客户端请求不包含session id，则为此客户端创建一个session并且生成一个与此session相关联的session id，session id的值应该是一个既不会重复，又不容易被找到规律以仿造的字符串，这个session id将被在本次响应中返回给客户端保存。</p>
+<p>备注：</p>
+<p>保存这个session id的方式可以采用cookie，这样在交互过程中浏览器可以自动的按照规则把这个标识发挥给服务器。一般这个cookie的名字都是类似于SEEESIONID。但cookie可以被人为的禁止，则必须有其他机制以便在cookie被禁止时仍然能够把session id传递回服务器。</p>
+<p>经常被使用的一种技术叫做URL重写，就是把session id直接附加在URL路径的后面。还有一种技术叫做表单隐藏字段。就是服务器会自动修改表单，添加一个隐藏字段，以便在表单提交时能够把session id传递回服务器。</p>
+<p>参考资料：</p>
+<p><a href="https://www.cnblogs.com/fnng/archive/2012/08/14/2637279.html" target="_blank" rel="noopener">https://www.cnblogs.com/fnng/archive/2012/08/14/2637279.html</a></p>
+<p><a href="https://www.cnblogs.com/lonelydreamer/p/6169469.html" target="_blank" rel="noopener">https://www.cnblogs.com/lonelydreamer/p/6169469.html</a></p>
+<p><a href="https://blog.csdn.net/lirui513/article/details/54891102" target="_blank" rel="noopener">https://blog.csdn.net/lirui513/article/details/54891102</a></p>
 
       
 
@@ -304,7 +218,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ctf</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">web</a>
         		</li>
       		
 		</ul>
@@ -360,7 +274,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/07/01/初识软件安全/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/07/23/session机制，会话控制/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -374,18 +288,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/07/01/两道入门Bin题/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/07/23/httponly参数/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          两道入门Bin题
+          httponly参数
         
       </div>
     </a>
   
   
-    <a href="/2018/06/30/how_to_change_/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">如何修改github博客内的鼠标指针</div>
+    <a href="/2018/07/23/使用burpsuit检测csrf漏洞/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">使用burpsuite检测csrf漏洞</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -412,7 +326,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#软件安全"><span class="toc-number">1.</span> <span class="toc-text">软件安全</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#PWN"><span class="toc-number">2.</span> <span class="toc-text">PWN</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#硬件相关"><span class="toc-number">3.</span> <span class="toc-text">硬件相关</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#数值表示"><span class="toc-number">4.</span> <span class="toc-text">数值表示</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#寄存器相关名词"><span class="toc-number">5.</span> <span class="toc-text">寄存器相关名词</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#寻址方式与汇编常用指令"><span class="toc-number">6.</span> <span class="toc-text">寻址方式与汇编常用指令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#寻址"><span class="toc-number">6.1.</span> <span class="toc-text">寻址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#汇编常用指令"><span class="toc-number">6.2.</span> <span class="toc-text">汇编常用指令</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Ollydbg各项操作"><span class="toc-number">7.</span> <span class="toc-text">Ollydbg各项操作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#简介"><span class="toc-number">7.1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#快捷键"><span class="toc-number">7.2.</span> <span class="toc-text">快捷键</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基本操作流程"><span class="toc-number">7.3.</span> <span class="toc-text">基本操作流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#找main函数方法"><span class="toc-number">7.4.</span> <span class="toc-text">找main函数方法</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Session"><span class="toc-number">1.</span> <span class="toc-text">Session</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#百科定义"><span class="toc-number">1.1.</span> <span class="toc-text">百科定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#工作原理"><span class="toc-number">1.2.</span> <span class="toc-text">工作原理</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#与cookie相关"><span class="toc-number">2.</span> <span class="toc-text">与cookie相关</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP协议与状态保持"><span class="toc-number">2.1.</span> <span class="toc-text">HTTP协议与状态保持</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cookie与session的产生"><span class="toc-number">2.2.</span> <span class="toc-text">cookie与session的产生</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cookie与session的机制与原理"><span class="toc-number">2.3.</span> <span class="toc-text">cookie与session的机制与原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#cookie的使用："><span class="toc-number">2.3.1.</span> <span class="toc-text">cookie的使用：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#session机制："><span class="toc-number">2.3.2.</span> <span class="toc-text">session机制：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sessionID"><span class="toc-number">2.3.3.</span> <span class="toc-text">sessionID</span></a></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
