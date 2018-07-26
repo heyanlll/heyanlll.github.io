@@ -6,28 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Bin(四) | ckf&#39;s blog</title>
+  <title>反序列化漏洞 | ckf&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="简介：集训Day10，两道逆向题">
-<meta name="keywords" content="ctf,Bin">
+  <meta name="description" content="简介：15年被人们所认知并且利用的JAVA反序列化漏洞，可以攻击JAVA应用，实现远程代码执行。反序列化问题由来已久，且并非Java语言特有，在其他语言例如PHP和Python中也有相似的问题。">
+<meta name="keywords" content="web">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Bin(四)">
-<meta property="og:url" content="http://yoursite.com/2018/07/09/Bin-四/index.html">
+<meta property="og:title" content="反序列化漏洞">
+<meta property="og:url" content="http://yoursite.com/2018/07/26/反序列化漏洞/index.html">
 <meta property="og:site_name" content="ckf&#39;s blog">
-<meta property="og:description" content="简介：集训Day10，两道逆向题">
+<meta property="og:description" content="简介：15年被人们所认知并且利用的JAVA反序列化漏洞，可以攻击JAVA应用，实现远程代码执行。反序列化问题由来已久，且并非Java语言特有，在其他语言例如PHP和Python中也有相似的问题。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/005Z7H2Agy1ft3o4e3gouj319s0p949q.jpg">
-<meta property="og:image" content="http://ww4.sinaimg.cn/large/005Z7H2Agy1ft3o5otd7tj319009vdmc.jpg">
-<meta property="og:image" content="http://ww4.sinaimg.cn/large/005Z7H2Agy1ft3o61j28cj30o60hs10c.jpg">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/005Z7H2Agy1ft3o6yx00mj31990knwrd.jpg">
-<meta property="og:image" content="http://ww4.sinaimg.cn/large/005Z7H2Agy1ft3o7kof7ej31a80jl7fx.jpg">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/005Z7H2Agy1ft3o7r3a7oj31ae0me16s.jpg">
-<meta property="og:image" content="http://ww2.sinaimg.cn/large/005Z7H2Agy1ft3o833sr1j30dc07i3zl.jpg">
-<meta property="og:updated_time" content="2018-07-11T12:15:33.119Z">
+<meta property="og:updated_time" content="2018-07-26T11:38:10.575Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Bin(四)">
-<meta name="twitter:description" content="简介：集训Day10，两道逆向题">
-<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/005Z7H2Agy1ft3o4e3gouj319s0p949q.jpg">
+<meta name="twitter:title" content="反序列化漏洞">
+<meta name="twitter:description" content="简介：15年被人们所认知并且利用的JAVA反序列化漏洞，可以攻击JAVA应用，实现远程代码执行。反序列化问题由来已久，且并非Java语言特有，在其他语言例如PHP和Python中也有相似的问题。">
   
     <link rel="alternative" href="/atom.xml" title="ckf&#39;s blog" type="application/atom+xml">
   
@@ -165,71 +157,34 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Bin-四" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-反序列化漏洞" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Bin(四)
+      反序列化漏洞
     </h1>
   
 
         
-        <a href="/2018/07/09/Bin-四/" class="archive-article-date">
-  	<time datetime="2018-07-09T06:33:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-09</time>
+        <a href="/2018/07/26/反序列化漏洞/" class="archive-article-date">
+  	<time datetime="2018-07-26T11:17:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-26</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>简介：集训Day10，两道逆向题<br><a id="more"></a></p>
-<h1 id="AMAZE-exe"><a href="#AMAZE-exe" class="headerlink" title="AMAZE.exe"></a>AMAZE.exe</h1><hr>
-<p>这道题很有趣（当然是做出的前提下），提示就在名字中</p>
-<p>首先，按照常规思路一步一步走，先找到主函数</p>
-<p><img src="http://ww1.sinaimg.cn/large/005Z7H2Agy1ft3o4e3gouj319s0p949q.jpg" alt=""></p>
-<p>可以看到，打开exe后，控制台上有打印一句话，这样利用智能查找能很方便得找到main函数位置</p>
-<p>接着找到了主要针对字符串进行的一系列变换的操作，（这一大串代码到最后会有一个判断后跳回开头的操作，不出意外就是对字符串进行一个遍历）从后往前推，我们需要让文件输出You are right！</p>
-<p>然后有两步比较关键的步骤</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">mov al,byte ptr ds:[edx+eax*8+0x481040]</span><br><span class="line">cmp al,0x23</span><br><span class="line">jnz short 004015A5</span><br><span class="line">.....</span><br><span class="line">.....</span><br><span class="line">.....</span><br><span class="line">.....</span><br><span class="line">mov al,byte ptr ds:[edx+eax*8+0x481040]</span><br><span class="line">cmp al,0x45</span><br><span class="line">jnz short 004015EA</span><br></pre></td></tr></table></figure>
-<p>程序会从内存取数据并赋予al，比较al与0x23，假如与0x23相同则跳入到输出error的操作，假如与0x45相同，即可跳转到输出you are right的操作</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">byte ptr ds:[edx+eax*8+0x481040]</span><br></pre></td></tr></table></figure>
-<p>分析这串取数据的代码，可以明显知道edx+eax*8是控制偏移量的操作，应该会随着我们所输入的数据而进行改变。因此，我们需要去0x481040中看看有啥</p>
-<p><img src="http://ww4.sinaimg.cn/large/005Z7H2Agy1ft3o5otd7tj319009vdmc.jpg" alt=""></p>
-<p>如图，发现那一块中的数据，就只有23,20,45,53，45和53只有一个(此处有伏笔)</p>
-<p>接着继续往上分析，看看我们该如何控制edx和eax，我们发现eax和edx会接受local.4和local.3这两变量的值，因此着重关注他们</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mov eax,[local.4]</span><br><span class="line">mov edx,[local.3]</span><br></pre></td></tr></table></figure>
-<p><img src="http://ww4.sinaimg.cn/large/005Z7H2Agy1ft3o61j28cj30o60hs10c.jpg" alt=""></p>
-<p>再往上走如图，发现了许多比较后跳转的操作，这一块应该是由if语句所组成，然后，local.3的初值为1，local.4的初值为7,local.5为所输入的值</p>
-<p>经过分析可得：</p>
-<ol>
-<li>输入0x32(2)-&gt;local.4++</li>
-<li>输入0x38(8)-&gt;local.4 –</li>
-<li>输入0x36(6)-&gt;local.3++</li>
-<li>输入0x34(4)-&gt;local.3 –</li>
-</ol>
-<p>经过计算，若要取到数据段中的0x45，必须使local.3为3，local.4为1，初值已知，因此我就很耿直得输入了66888888，想要直接实现local.3自增2次，local.4自减6次。最后肯定是不行的，因为程序会对每个字符检测，一旦取到了0x23，就会直接跳转到error然后结束。</p>
-<p>这时候我就僵住了，经过提示，题目名amaze，拆开来就是a maze 一个迷宫。这其实就是一个走迷宫的问题，每输入的一个数就是控制人物的上下左右。其实通过数据也可以分析得出来，我们要取到0x45就能成功，0x45就相当于终点，如果我们使local.4和local.3保持初值，那么就会取到0x53,0x53相当于起点，如果取到了0x23，程序error结束，相当于迷宫撞墙，操作不对。如果取到了0x20（保持原位也会取到0x20），继续循环，0x20相当于是一个可通的路径。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">########</span><br><span class="line"># #E   #</span><br><span class="line"># #### #</span><br><span class="line">#      #</span><br><span class="line"># #### #</span><br><span class="line"># #### #</span><br><span class="line"># #### #</span><br><span class="line">#S######</span><br><span class="line"></span><br><span class="line">up:4 right:5 up:2 left:3</span><br><span class="line"></span><br><span class="line">start:(7,1)</span><br><span class="line">end:(1,3)</span><br><span class="line"></span><br><span class="line">32(2) =&gt; local.4++ =&gt; down</span><br><span class="line">38(8) =&gt; local.4-- =&gt; up</span><br><span class="line">36(6) =&gt; local.3++ =&gt; right</span><br><span class="line">34(4) =&gt; local.3-- =&gt; left</span><br><span class="line"></span><br><span class="line">88886666688444</span><br></pre></td></tr></table></figure>
-<p>最后分析的结果如上，输入88886666688444即可达到终点</p>
-<h1 id="AngelaZiegle"><a href="#AngelaZiegle" class="headerlink" title="AngelaZiegle"></a>AngelaZiegle</h1><hr>
-<p>安吉拉齐格勒，这是守望先锋天使的名字，不知道会不会有啥关联</p>
-<p>打开运行，发现一篇空白，没法子，F8一步步找输入点</p>
-<p><img src="http://ww1.sinaimg.cn/large/005Z7H2Agy1ft3o6yx00mj31990knwrd.jpg" alt=""></p>
-<p>找到后发现，其会调用一个字符串比较函数，比较的对象就是我们所输入的，以及字符串<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GUFB&#123;yZWCZV LZKZW TDZ&#125;</span><br></pre></td></tr></table></figure></p>
-<p>假如比较成功即可输出Till Vahala！ 这是天使标志性的台词</p>
-<p>那么可以确定GUFB{yZWCZV LZKZW TDZ}就是我们要输入的字符串加密过后的样子，往上找找看程序在对我们字符串进行了什么操作</p>
-<p><img src="http://ww4.sinaimg.cn/large/005Z7H2Agy1ft3o7kof7ej31a80jl7fx.jpg" alt=""></p>
-<p>这里发现一个循环，分析后确认为遍历我们输入的字符串，在这里面除了两个call以外没什么特别的，其中一个call是调用strlen()，另一个肯定有点东西，F7进去看看</p>
-<p><img src="http://ww1.sinaimg.cn/large/005Z7H2Agy1ft3o7r3a7oj31ae0me16s.jpg" alt=""></p>
-<p>没错啦，这就是加密函数，一个很简单的对称加密，简要分析写后出python脚本解密</p>
-<p>代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">a=&apos;GUFB&#123;yZWCZV LZKZW TDZ&#125;&apos;</span><br><span class="line"></span><br><span class="line">b=&apos;QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm&apos;</span><br><span class="line"></span><br><span class="line">c=&apos;qazwsxedcrfvtgbyhnujmikolpQAZWSXEDCRFVTGBYHNUJMIKOLP&apos;</span><br><span class="line"></span><br><span class="line">str=&apos;&apos;</span><br><span class="line"></span><br><span class="line">for ckf in a:</span><br><span class="line">    pos=c.find(ckf)</span><br><span class="line">    if pos!=-1:</span><br><span class="line">        str=str+b[pos]</span><br><span class="line">        </span><br><span class="line">print(str)</span><br></pre></td></tr></table></figure></p>
-<p>得到flag:  flag{Heroes never die}</p>
-<p>普通天使 Heroes never die!</p>
-<p>橙皮瓦尔基里 Till Vahala!</p>
-<p><img src="http://ww2.sinaimg.cn/large/005Z7H2Agy1ft3o833sr1j30dc07i3zl.jpg" alt=""></p>
+        <p>简介：15年被人们所认知并且利用的JAVA反序列化漏洞，可以攻击JAVA应用，实现远程代码执行。反序列化问题由来已久，且并非Java语言特有，在其他语言例如PHP和Python中也有相似的问题。<br><a id="more"></a></p>
+<h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><p>序列化：</p>
+<p>序列化就是把对象转换成字节流，便于保存在内存、文件、数据库中；Java中的ObjectOutputStream类的writeObject()方法可以实现</p>
+<p>反序列化：</p>
+<p>反序列化即逆过程，由字节流还原成对象。类ObjectInputStream类的readObject()方法用于反序列化</p>
+<p>因此，问题所在于类ObjectInputStream在反序列化时，没有对生成的对象的类型做限制，攻击者便可以通过构造恶意输入，让反序列化产生对象，在此过程中就可能带来任意代码执行</p>
+<h1 id="序列化与反序列化的过程"><a href="#序列化与反序列化的过程" class="headerlink" title="序列化与反序列化的过程"></a>序列化与反序列化的过程</h1><p>需要学JAVA类的前置才能理解，暂时搁置</p>
+<h1 id="检测weblogic反序列化漏洞"><a href="#检测weblogic反序列化漏洞" class="headerlink" title="检测weblogic反序列化漏洞"></a>检测weblogic反序列化漏洞</h1><p>通过java反序列化漏洞利用工具验证，若存在漏洞，通过webshell上传木马从而获取webshell，在此之前，需要获取web路径以及web路径对应的物理路径</p>
 
       
 
@@ -243,11 +198,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ctf</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Bin</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">web</a>
         		</li>
       		
 		</ul>
@@ -303,7 +254,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/07/09/Bin-四/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/07/26/反序列化漏洞/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -317,18 +268,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/07/10/web-五/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          web(五)
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/07/08/web-四/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">web(四)</div>
+    <a href="/2018/07/23/httponly参数/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">httponly参数</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -355,7 +297,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#AMAZE-exe"><span class="toc-number">1.</span> <span class="toc-text">AMAZE.exe</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#AngelaZiegle"><span class="toc-number">2.</span> <span class="toc-text">AngelaZiegle</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#定义"><span class="toc-number">1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#序列化与反序列化的过程"><span class="toc-number">2.</span> <span class="toc-text">序列化与反序列化的过程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#检测weblogic反序列化漏洞"><span class="toc-number">3.</span> <span class="toc-text">检测weblogic反序列化漏洞</span></a></li></ol>
                     </div>
                 </span>
             </div>
