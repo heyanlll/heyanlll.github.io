@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>httponly参数 | ckf&#39;s blog</title>
+  <title>tony老师的Linux基础 | ckf&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="简介：有关PhP设置httponly参数">
-<meta name="keywords" content="web">
+  <meta name="description" content="简介：tony老师的Linux教程笔记">
+<meta name="keywords" content="Linux">
 <meta property="og:type" content="article">
-<meta property="og:title" content="httponly参数">
-<meta property="og:url" content="http://yoursite.com/2018/07/23/httponly参数/index.html">
+<meta property="og:title" content="tony老师的Linux基础">
+<meta property="og:url" content="http://yoursite.com/2018/09/14/Linux基础/index.html">
 <meta property="og:site_name" content="ckf&#39;s blog">
-<meta property="og:description" content="简介：有关PhP设置httponly参数">
+<meta property="og:description" content="简介：tony老师的Linux教程笔记">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-07-23T15:30:34.188Z">
+<meta property="og:updated_time" content="2018-09-14T09:15:25.206Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="httponly参数">
-<meta name="twitter:description" content="简介：有关PhP设置httponly参数">
+<meta name="twitter:title" content="tony老师的Linux基础">
+<meta name="twitter:description" content="简介：tony老师的Linux教程笔记">
   
     <link rel="alternative" href="/atom.xml" title="ckf&#39;s blog" type="application/atom+xml">
   
@@ -157,36 +157,157 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-httponly参数" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Linux基础" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      httponly参数
+      tony老师的Linux基础
     </h1>
   
 
         
-        <a href="/2018/07/23/httponly参数/" class="archive-article-date">
-  	<time datetime="2018-07-23T14:38:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-23</time>
+        <a href="/2018/09/14/Linux基础/" class="archive-article-date">
+  	<time datetime="2018-09-14T08:57:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-14</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>简介：有关PhP设置httponly参数<br><a id="more"></a></p>
-<h1 id="Httponly"><a href="#Httponly" class="headerlink" title="Httponly"></a>Httponly</h1><p>httponly是微软对cookie做的扩展，这个主要是解决用户的cookie可能被盗用的问题。通过js脚本将无法读取到cookie信息，这样能有效的防止XSS攻击</p>
-<h1 id="PHP中设置"><a href="#PHP中设置" class="headerlink" title="PHP中设置"></a>PHP中设置</h1><p>PHP5.2以上版本已支持HttpOnly参数的设置，同样也支持全局的HttpOnly的设置，在php.ini中</p>
-<p> session.cookie_httponly = </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php ini_set(&quot;session.cookie_httponly&quot;, 1); </span><br><span class="line">// or session_set_cookie_params(0, NULL, NULL, NULL, TRUE); </span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
-<p>Cookie操作函数setcookie函数和setrawcookie函数也专门添加了第7个参数来做为HttpOnly的选项，开启方法为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">setcookie(&quot;abc&quot;, &quot;test&quot;, NULL, NULL, NULL, NULL, TRUE); </span><br><span class="line">setrawcookie(&quot;abc&quot;, &quot;test&quot;, NULL, NULL, NULL, NULL, TRUE);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
-<p>对于PHP5.1以前版本以及PHP4版本的话，则需要通过header函数来变通下了：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">setcookie(&quot;abc&quot;, &quot;test&quot;, NULL, NULL, NULL, NULL, TRUE); </span><br><span class="line">setrawcookie(&quot;abc&quot;, &quot;test&quot;, NULL, NULL, NULL, NULL, TRUE);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
-<p>参考资料：</p>
-<p><a href="https://blog.csdn.net/china_skag/article/details/41484193?winzoom=1" target="_blank" rel="noopener">https://blog.csdn.net/china_skag/article/details/41484193?winzoom=1</a></p>
+        <p>简介：tony老师的Linux教程笔记<br><a id="more"></a></p>
+<h1 id="与windows的区别"><a href="#与windows的区别" class="headerlink" title="与windows的区别"></a>与windows的区别</h1><hr>
+<ol>
+<li>Linux严格区分大小写，其中所有内容皆文件（包括硬件，用户）</li>
+<li><p>Linux不靠拓展名区分文件类型，靠文件的权限区分</p>
+<p><em>约定俗成： </em><br><em>脚本文件“</em>.sh”<em>
+</em>配置文件“<em>.conf”</em><br><em>二进制软件包“</em>.rpm”<em>
+</em>压缩包“<em>.gz” “</em>.bz2”“<em>.tar.bz2” “</em>.tgz”等*</p>
+</li>
+<li>Windows下程序不能直接在Linux中安装和运行 </li>
+</ol>
+<h1 id="使用虚拟机安装Linux"><a href="#使用虚拟机安装Linux" class="headerlink" title="使用虚拟机安装Linux"></a>使用虚拟机安装Linux</h1><hr>
+<p>  <strong>虚拟机定义：虚拟机指通过软件模拟的具有完整硬件系统功能的、运行在一个完全隔离环境中的完整计算机系统。</strong></p>
+<p> <em>启动过程中按F2可以进入BIOS界面</em></p>
+<h2 id="虚拟机优点："><a href="#虚拟机优点：" class="headerlink" title="虚拟机优点："></a>虚拟机优点：</h2><ol>
+<li>可以安装各种演示环境。</li>
+<li>保证主机的快速运行。</li>
+<li>不熟悉的应用可以在虚拟机中随便安装和彻底删除。</li>
+<li>体验不同版本的操作系统，如Linux、Mac等。</li>
+<li><p>动态分配内存，硬盘大小。</p>
+<p>文件分区与挂载：<br>/dev文件下都是硬件设备文件名<br>逻辑分区一定从5号开始</p>
+</li>
+</ol>
+<p>挂载：将分区与盘符连接在一起的过程</p>
+<h1 id="命令相关"><a href="#命令相关" class="headerlink" title="命令相关"></a>命令相关</h1><hr>
+<h2 id="链接命令："><a href="#链接命令：" class="headerlink" title="链接命令："></a>链接命令：</h2><p>ln （link） 原文件 目标文件/生成链接文件</p>
+<p><em>-s 创建软链接选项，不打默认硬链接</em></p>
+<p>  硬链接特征：</p>
+<pre><code>1、拥有相同的i节点和存储block块，可以看做同一个文件；
 
+2、只能通过i节点识别；
+
+3、不能跨分区；
+
+4、修改任意文件，另一个都会随之改变；
+
+5、删除原文件，硬链接后文件依旧存在；
+</code></pre><p>  软链接特征：</p>
+<pre><code>1、类似快捷方式；
+
+2、相较于硬链接更易辨认；
+
+3、拥有自己的i节点和block；
+
+4、修改任意文件，另一个都会随之改变；
+
+5、删除原文件，软链接后文件无法使用；
+
+  注：软链接的原文件一定要写绝对路径
+</code></pre><p>$PATH 环境变量<br>定义的是系统搜索命令的路径，可以执行命令而不用输入其命令的绝对路径</p>
+<h2 id="压缩命令"><a href="#压缩命令" class="headerlink" title="压缩命令"></a>压缩命令</h2><h3 id="zip格式压缩："><a href="#zip格式压缩：" class="headerlink" title=".zip格式压缩："></a>.zip格式压缩：</h3><p>zip 压缩文件名 源文件  # 压缩文件</p>
+<p>zip -r 压缩文件名 源文件 # 压缩目录</p>
+<p>unzip 压缩文件 #解压缩</p>
+<p><em>注：因为Linux不区分后缀名，所以压缩文件名一定要写清楚</em></p>
+<h3 id="gz格式压缩："><a href="#gz格式压缩：" class="headerlink" title=".gz格式压缩："></a>.gz格式压缩：</h3><p>gzip 源文件 # 压缩文件，但源文件会消失</p>
+<p>gzip -c 源文件 &gt; 压缩文件 # 压缩为.gz文件，源文件保留</p>
+<p>gzip -r 目录 # 压缩目录下所有子文件，但不能打包</p>
+<p>gzip -d 压缩文件 # 解压缩文件</p>
+<p>gunzip 压缩文件 # 解压缩文件</p>
+<h3 id="bz2格式压缩："><a href="#bz2格式压缩：" class="headerlink" title=".bz2格式压缩："></a>.bz2格式压缩：</h3><p>bzip2 源文件 # 压缩文件，但源文件会消失</p>
+<p>bzip2 -k 源文件 # 压缩文件，保留源文件<br>注：bzip2命令不能压缩目录</p>
+<p>bzip2 -d 压缩文件 # 解压缩文件，可以使用-k保留压缩文件</p>
+<p>bunzip2 压缩文件 # 解压缩文件，可以使用-k保留压缩文件</p>
+<h3 id="打包命令tar："><a href="#打包命令tar：" class="headerlink" title="打包命令tar："></a>打包命令tar：</h3><p>tar -cvf 打包文件名 源文件</p>
+<p>选项：</p>
+<pre><code>-c：打包/压缩
+-v：显示过程
+-f：指定打包后的文件名
+-x：解包/解压缩
+-z：打包后会直接压缩成.gzip格式
+-j：打包后会直接压缩成.bz2格式
+-t：测试，相当于不解压直接看文件
+</code></pre><p>因此可以使用该方法将目录压缩成.bz2或者gzip格式</p>
+<h3 id="解打包命令："><a href="#解打包命令：" class="headerlink" title="解打包命令："></a>解打包命令：</h3><p>tar -xvf 打包文件</p>
+<h1 id="系统运行级别："><a href="#系统运行级别：" class="headerlink" title="系统运行级别："></a>系统运行级别：</h1><hr>
+<p>可以使用runlevel查询当前级别 </p>
+<p>0 关机</p>
+<p>1 单用户（安全模式）</p>
+<p>2 不完全多用户，不含NFS服务</p>
+<p>3 完全多用户（正常使用）</p>
+<p>4 未分配（没在使用）</p>
+<p>5 图形界面</p>
+<p>6 重启</p>
+<h1 id="挂载相关命令：分配盘符"><a href="#挂载相关命令：分配盘符" class="headerlink" title="挂载相关命令：分配盘符"></a>挂载相关命令：分配盘符</h1><hr>
+<p>mount 查询已挂载盘符</p>
+<p>mount -a 依据 etc/fstab配置文件内容，自动挂载</p>
+<h2 id="挂载命令格式："><a href="#挂载命令格式：" class="headerlink" title="挂载命令格式："></a>挂载命令格式：</h2><p>mount [-t 文件系统] [-o 特殊选项] 设备文件名 挂载点</p>
+<p><em>注：-t文件系统：加入文件系统类型来指定挂载的类型，可以使ext3、ext4、iso9660（光盘文件系统类型）</em></p>
+<h2 id="光盘操作-："><a href="#光盘操作-：" class="headerlink" title="光盘操作 ："></a>光盘操作 ：</h2><pre><code>1、mkdir /mnt/cdrom #建立挂载点（只要是空文件即可）
+2、mount -t iso9660 /dev/sr0/ /mnt/cdrom/ #挂载光盘（光盘的设备文件名规定为 dev/sr0）
+3、umount 设备文件名或者挂载点 #卸载操作（一定要退出该目录）
+</code></pre><h2 id="U盘操作："><a href="#U盘操作：" class="headerlink" title="U盘操作："></a>U盘操作：</h2><pre><code>1、fdisk -l # U盘设备文件名不固定，使用此命令可以查看U盘设备文件名
+2、mount -t vfat [设备文件名] /mnt/usb #挂载U盘，vfat指windows fat32 
+3、卸载同理
+</code></pre><h1 id="Shell基础"><a href="#Shell基础" class="headerlink" title="Shell基础"></a>Shell基础</h1><hr>
+<h2 id="定义：命令行解释器，相当于用户与系统内核之间的中介"><a href="#定义：命令行解释器，相当于用户与系统内核之间的中介" class="headerlink" title="定义：命令行解释器，相当于用户与系统内核之间的中介"></a>定义：命令行解释器，相当于用户与系统内核之间的中介</h2><h2 id="分类：-有两种主要语法的类型，分为Bourne家族和C家族"><a href="#分类：-有两种主要语法的类型，分为Bourne家族和C家族" class="headerlink" title="分类： 有两种主要语法的类型，分为Bourne家族和C家族"></a>分类： 有两种主要语法的类型，分为Bourne家族和C家族</h2><h2 id="脚本运行-我们可以直接通过shell语法来写一个可执行的脚本"><a href="#脚本运行-我们可以直接通过shell语法来写一个可执行的脚本" class="headerlink" title="脚本运行:  我们可以直接通过shell语法来写一个可执行的脚本"></a>脚本运行:  我们可以直接通过shell语法来写一个可执行的脚本</h2><p><strong>通过赋予执行权限：chmod 755 hello.sh<br> 或者通过Bash直接调用执行脚本</strong></p>
+<h2 id="Bash基本功能"><a href="#Bash基本功能" class="headerlink" title="Bash基本功能"></a>Bash基本功能</h2><h3 id="命令别名："><a href="#命令别名：" class="headerlink" title="命令别名："></a>命令别名：</h3><p>直接使用alias命令可以查看目前默认的别名</p>
+<p>alias 别名=’命令名’ 可以设置别名</p>
+<p><strong>别名永久生效与删除别名：</strong></p>
+<p>vi ~/.bashrc #写入环境变量配置文件</p>
+<p>unalias 别名 #删除别名（也只是临时删除，要完全删除也需要修改配置文件）</p>
+<p><strong>常用快捷键：</strong></p>
+<pre><code>ctrl+c 退出，终止
+ctrl+l 清屏
+ctrl+a 光标移到行首
+ctrl+e 光标移到行尾
+ctrl+u 从光标位置删除到
+ctrl+r 在历史命令中搜索
+ctrl+z 把命令放入后台
+</code></pre><h3 id="输出重定向"><a href="#输出重定向" class="headerlink" title="输出重定向"></a>输出重定向</h3><p>命令 &gt;(&gt;&gt;) 文件 将正确可执行命令结果覆盖（追加）到指定文件</p>
+<p>错误命令 2&gt;(&gt;&gt;)文件 将错误不可执行命令结果覆盖（追加）到指定文件</p>
+<p>命令 &amp;&gt;(&gt;&gt;)文件<br>命令 &gt;(&gt;&gt;) 文件 2&gt;&amp;1  可以实现无论正确还是错误皆定向</p>
+<h2 id="管道符、通配符与其他特殊符号"><a href="#管道符、通配符与其他特殊符号" class="headerlink" title="管道符、通配符与其他特殊符号"></a>管道符、通配符与其他特殊符号</h2><h3 id="多命令顺序执行"><a href="#多命令顺序执行" class="headerlink" title="多命令顺序执行"></a>多命令顺序执行</h3><pre><code>; # 连接直接，没有逻辑关系，单个命令不正确执行不会影响其他命令
+&amp;&amp; # 逻辑与，只有命令1成功执行，命令2才会执行
+|| # 逻辑或，只有命令1执行不正确，命令2才会执行
+</code></pre><p><em>命令 &amp;&amp; echo yes || echo no 通过这样的方法可以检验命令正确执行与否</em></p>
+<h3 id="管道符："><a href="#管道符：" class="headerlink" title="管道符："></a>管道符：</h3><p> |  # 命令1的正确输出作为命令2的操作对象</p>
+<h3 id="通配符："><a href="#通配符：" class="headerlink" title="通配符："></a>通配符：</h3><pre><code>一般用于查找文件名的特殊符号
+*匹配任意多个字符
+？匹配任意字符
+[]匹配任意一个中括号内的字符
+[-]匹配中括号中任意一个字符，-代表一个范围
+[^]逻辑非
+</code></pre><p>其他特殊符号：</p>
+<pre><code>&apos;&apos;中所有特殊符号无含义
+&quot;&quot;中所有特殊符号有含义
+``和$()中包含系统命令，用来引用系统命令
+#代表注释
+\代表转义符，使特殊符号失去作用
+$用于调用变量的值
+</code></pre>
       
 
       
@@ -199,7 +320,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">web</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
         		</li>
       		
 		</ul>
@@ -255,7 +376,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/07/23/httponly参数/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/09/14/Linux基础/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -269,18 +390,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/07/26/反序列化漏洞/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          反序列化漏洞
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/07/23/session机制，会话控制/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">session机制，会话控制</div>
+    <a href="/2018/07/26/反序列化漏洞/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">反序列化漏洞</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -307,7 +419,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Httponly"><span class="toc-number">1.</span> <span class="toc-text">Httponly</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#PHP中设置"><span class="toc-number">2.</span> <span class="toc-text">PHP中设置</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#与windows的区别"><span class="toc-number">1.</span> <span class="toc-text">与windows的区别</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#使用虚拟机安装Linux"><span class="toc-number">2.</span> <span class="toc-text">使用虚拟机安装Linux</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#虚拟机优点："><span class="toc-number">2.1.</span> <span class="toc-text">虚拟机优点：</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#命令相关"><span class="toc-number">3.</span> <span class="toc-text">命令相关</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#链接命令："><span class="toc-number">3.1.</span> <span class="toc-text">链接命令：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#压缩命令"><span class="toc-number">3.2.</span> <span class="toc-text">压缩命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#zip格式压缩："><span class="toc-number">3.2.1.</span> <span class="toc-text">.zip格式压缩：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#gz格式压缩："><span class="toc-number">3.2.2.</span> <span class="toc-text">.gz格式压缩：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#bz2格式压缩："><span class="toc-number">3.2.3.</span> <span class="toc-text">.bz2格式压缩：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#打包命令tar："><span class="toc-number">3.2.4.</span> <span class="toc-text">打包命令tar：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解打包命令："><span class="toc-number">3.2.5.</span> <span class="toc-text">解打包命令：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#系统运行级别："><span class="toc-number">4.</span> <span class="toc-text">系统运行级别：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#挂载相关命令：分配盘符"><span class="toc-number">5.</span> <span class="toc-text">挂载相关命令：分配盘符</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#挂载命令格式："><span class="toc-number">5.1.</span> <span class="toc-text">挂载命令格式：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#光盘操作-："><span class="toc-number">5.2.</span> <span class="toc-text">光盘操作 ：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#U盘操作："><span class="toc-number">5.3.</span> <span class="toc-text">U盘操作：</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Shell基础"><span class="toc-number">6.</span> <span class="toc-text">Shell基础</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#定义：命令行解释器，相当于用户与系统内核之间的中介"><span class="toc-number">6.1.</span> <span class="toc-text">定义：命令行解释器，相当于用户与系统内核之间的中介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分类：-有两种主要语法的类型，分为Bourne家族和C家族"><span class="toc-number">6.2.</span> <span class="toc-text">分类： 有两种主要语法的类型，分为Bourne家族和C家族</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#脚本运行-我们可以直接通过shell语法来写一个可执行的脚本"><span class="toc-number">6.3.</span> <span class="toc-text">脚本运行:  我们可以直接通过shell语法来写一个可执行的脚本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Bash基本功能"><span class="toc-number">6.4.</span> <span class="toc-text">Bash基本功能</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#命令别名："><span class="toc-number">6.4.1.</span> <span class="toc-text">命令别名：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#输出重定向"><span class="toc-number">6.4.2.</span> <span class="toc-text">输出重定向</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#管道符、通配符与其他特殊符号"><span class="toc-number">6.5.</span> <span class="toc-text">管道符、通配符与其他特殊符号</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#多命令顺序执行"><span class="toc-number">6.5.1.</span> <span class="toc-text">多命令顺序执行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#管道符："><span class="toc-number">6.5.2.</span> <span class="toc-text">管道符：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#通配符："><span class="toc-number">6.5.3.</span> <span class="toc-text">通配符：</span></a></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
