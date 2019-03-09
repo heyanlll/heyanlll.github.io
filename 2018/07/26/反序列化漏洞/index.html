@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="ckf&#39;s blog">
 <meta property="og:description" content="简介：15年被人们所认知并且利用的JAVA反序列化漏洞，可以攻击JAVA应用，实现远程代码执行。反序列化问题由来已久，且并非Java语言特有，在其他语言例如PHP和Python中也有相似的问题。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-07-26T11:38:10.575Z">
+<meta property="og:updated_time" content="2019-01-18T02:40:13.755Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="反序列化漏洞">
 <meta name="twitter:description" content="简介：15年被人们所认知并且利用的JAVA反序列化漏洞，可以攻击JAVA应用，实现远程代码执行。反序列化问题由来已久，且并非Java语言特有，在其他语言例如PHP和Python中也有相似的问题。">
@@ -183,7 +183,6 @@
 <p>反序列化：</p>
 <p>反序列化即逆过程，由字节流还原成对象。类ObjectInputStream类的readObject()方法用于反序列化</p>
 <p>因此，问题所在于类ObjectInputStream在反序列化时，没有对生成的对象的类型做限制，攻击者便可以通过构造恶意输入，让反序列化产生对象，在此过程中就可能带来任意代码执行</p>
-<h1 id="序列化与反序列化的过程"><a href="#序列化与反序列化的过程" class="headerlink" title="序列化与反序列化的过程"></a>序列化与反序列化的过程</h1><p>需要学JAVA类的前置才能理解，暂时搁置</p>
 <h1 id="检测weblogic反序列化漏洞"><a href="#检测weblogic反序列化漏洞" class="headerlink" title="检测weblogic反序列化漏洞"></a>检测weblogic反序列化漏洞</h1><p>通过java反序列化漏洞利用工具验证，若存在漏洞，通过webshell上传木马从而获取webshell，在此之前，需要获取web路径以及web路径对应的物理路径</p>
 
       
@@ -306,7 +305,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#定义"><span class="toc-number">1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#序列化与反序列化的过程"><span class="toc-number">2.</span> <span class="toc-text">序列化与反序列化的过程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#检测weblogic反序列化漏洞"><span class="toc-number">3.</span> <span class="toc-text">检测weblogic反序列化漏洞</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#定义"><span class="toc-number">1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#检测weblogic反序列化漏洞"><span class="toc-number">2.</span> <span class="toc-text">检测weblogic反序列化漏洞</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -335,7 +334,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2018 Zm1Y.y2
+    		&copy; 2019 Zm1Y.y2
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -426,11 +425,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Pwn</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color4">Pwn</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -438,15 +437,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">article</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">其他</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">前端</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">吐槽</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">article</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">crypto</a>
               </li>
              
               <li class="article-tag-list-item">
