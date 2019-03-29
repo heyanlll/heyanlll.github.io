@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>ckf&#39;s blog</title>
+  <title>XXE漏洞与伪协议 | ckf&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="XML基础XML：可拓展标记语言  功能：标记电子文件使其具有结构性的标记语言，从而达到数据的传输与存储 XML组成模块 元素 属性 实体 PCDATA CDATA   元素  开始标签和闭合标签中的代码，可以嵌套，定义与HTML的元素一致  属性  标签可以拥有属性，属性总在开始标签中，以键值对的形式出现，定义与HTML的属性一致  1&amp;lt;img src=&amp;quot;computer.gif">
+  <meta name="description" content="简介：XXE漏洞攻击">
+<meta name="keywords" content="web">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ckf&#39;s blog">
+<meta property="og:title" content="XXE漏洞与伪协议">
 <meta property="og:url" content="http://yoursite.com/2019/03/29/XXE漏洞与伪协议/index.html">
 <meta property="og:site_name" content="ckf&#39;s blog">
-<meta property="og:description" content="XML基础XML：可拓展标记语言  功能：标记电子文件使其具有结构性的标记语言，从而达到数据的传输与存储 XML组成模块 元素 属性 实体 PCDATA CDATA   元素  开始标签和闭合标签中的代码，可以嵌套，定义与HTML的元素一致  属性  标签可以拥有属性，属性总在开始标签中，以键值对的形式出现，定义与HTML的属性一致  1&amp;lt;img src=&amp;quot;computer.gif">
+<meta property="og:description" content="简介：XXE漏洞攻击">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-29T12:56:18.374Z">
+<meta property="og:updated_time" content="2019-03-29T13:00:33.036Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ckf&#39;s blog">
-<meta name="twitter:description" content="XML基础XML：可拓展标记语言  功能：标记电子文件使其具有结构性的标记语言，从而达到数据的传输与存储 XML组成模块 元素 属性 实体 PCDATA CDATA   元素  开始标签和闭合标签中的代码，可以嵌套，定义与HTML的元素一致  属性  标签可以拥有属性，属性总在开始标签中，以键值对的形式出现，定义与HTML的属性一致  1&amp;lt;img src=&amp;quot;computer.gif">
+<meta name="twitter:title" content="XXE漏洞与伪协议">
+<meta name="twitter:description" content="简介：XXE漏洞攻击">
   
     <link rel="alternative" href="/atom.xml" title="ckf&#39;s blog" type="application/atom+xml">
   
@@ -159,9 +160,25 @@
             <article id="post-XXE漏洞与伪协议" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      XXE漏洞与伪协议
+    </h1>
+  
+
+        
+        <a href="/2019/03/29/XXE漏洞与伪协议/" class="archive-article-date">
+  	<time datetime="2019-03-29T13:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-29</time>
+</a>
+        
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="XML基础"><a href="#XML基础" class="headerlink" title="XML基础"></a>XML基础</h1><p>XML：可拓展标记语言 </p>
+        <p>简介：XXE漏洞攻击<br><a id="more"></a></p>
+<h1 id="XML基础"><a href="#XML基础" class="headerlink" title="XML基础"></a>XML基础</h1><p>XML：可拓展标记语言 </p>
 <p>功能：标记电子文件使其具有结构性的标记语言，从而达到数据的传输与存储</p>
 <h2 id="XML组成模块"><a href="#XML组成模块" class="headerlink" title="XML组成模块"></a>XML组成模块</h2><ul>
 <li>元素</li>
@@ -266,6 +283,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">web</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -479,19 +507,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Pwn</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">前端</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">web</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Pwn</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -507,11 +535,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">实习</a>
+                <a href="javascript:void(0)" class="js-tag color2">crypto</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">crypto</a>
+                <a href="javascript:void(0)" class="js-tag color3">实习</a>
               </li>
             
             <div class="clearfix"></div>
